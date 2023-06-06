@@ -15,13 +15,19 @@ const Login = () => {
     console.log(data);
   };
 
-    const x=useContext(AuthContext)
+  const { signInWithGit } = useContext(AuthContext);
 
-    const handleGithubLogin=()=>{
-
-    }
-
-
+  const handleGithubLogin = () => {
+    signInWithGit()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage)
+      });
+  };
 
   return (
     <div className="bg-[#081229] text-white">
@@ -76,7 +82,10 @@ const Login = () => {
         <div className="text-center">
           <h1>OR!!</h1>
           <div className="flex justify-center mt-4">
-            <button onClick={handleGithubLogin} className="flex items-center  py-1 rounded-lg px-2 gap-2 bg-gray-500">
+            <button
+              onClick={handleGithubLogin}
+              className="flex items-center  py-1 rounded-lg px-2 gap-2 bg-gray-500"
+            >
               <div>Login With</div>
               <div>
                 <BsGithub></BsGithub>
