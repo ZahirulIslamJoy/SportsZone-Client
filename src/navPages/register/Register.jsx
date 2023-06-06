@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsGithub } from "react-icons/bs";
 import { AuthContext } from "../../providers/AuthProviders";
 import { updateProfile } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const Register = () => {
-  const { signInWithGit, creatUserWithEp,handleLogOut } = useContext(AuthContext);
+  const { signInWithGit, creatUserWithEp,handeleSignOut } = useContext(AuthContext);
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
+  const navigate=useNavigate();
 
   const onSubmit = (data) => {
     const name=data.name;
@@ -22,8 +23,15 @@ const Register = () => {
     creatUserWithEp(data.email, data.password)
       .then((result) => {
         update(result,name,photo);
-        handleLogOut()
-        naviga
+        handeleSignOut()
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Registration is Complete,Login Now',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        navigate("/login")
       })
       .catch((error) => {
         const errorMessage = error.message;
