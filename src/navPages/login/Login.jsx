@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { BsGithub } from "react-icons/bs";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
   const {
@@ -12,10 +14,19 @@ const Login = () => {
   const onSubmit = (data) => {
     console.log(data);
   };
+
+    const x=useContext(AuthContext)
+
+    const handleGithubLogin=()=>{
+
+    }
+
+
+
   return (
-    <div className="bg-[#081229] text-white h-[70vh]">
+    <div className="bg-[#081229] text-white">
       <h1 className="text-center text-3xl font-semibold  pt-20">
-            Connect Us With Login!
+        Connect Us With Login!
       </h1>
       <div className="w-1/2  mt-24 mx-auto">
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -36,7 +47,7 @@ const Login = () => {
           </div>
           <div className="relative mt-5 z-0">
             <input
-             {...register("password")}
+              {...register("password")}
               type="password"
               id="floating_standard1"
               className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -63,10 +74,15 @@ const Login = () => {
           </Link>
         </p>
         <div className="text-center">
-            <h1>OR!!</h1>
-            <button>
-                
+          <h1>OR!!</h1>
+          <div className="flex justify-center mt-4">
+            <button onClick={handleGithubLogin} className="flex items-center  py-1 rounded-lg px-2 gap-2 bg-gray-500">
+              <div>Login With</div>
+              <div>
+                <BsGithub></BsGithub>
+              </div>
             </button>
+          </div>
         </div>
       </div>
     </div>
