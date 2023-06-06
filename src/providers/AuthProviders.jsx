@@ -1,5 +1,5 @@
-import React, { createContext } from 'react';
-import { getAuth, signInWithPopup } from "firebase/auth";
+import React, { createContext, useEffect, useState } from 'react';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithPopup, updateProfile } from "firebase/auth";
 import { GithubAuthProvider } from "firebase/auth";
 import app from '../config/firebase';
 
@@ -7,6 +7,8 @@ import app from '../config/firebase';
 export const AuthContext=createContext();
 
 const AuthProviders = ({children}) => {
+    const [user,setUser]=useState(null);
+    const [loading,setLoading]=useState(true);
     const auth = getAuth(app);
     const gitProvider = new GithubAuthProvider();
 
@@ -14,9 +16,32 @@ const AuthProviders = ({children}) => {
         return signInWithPopup(auth,gitProvider)
     }
 
-    const authShare={
-        signInWithGit,
+    const creatUserWithEp=(email,pass)=>{
+        return createUserWithEmailAndPassword(auth,email,pass)
     }
+
+    const updateProfile = (name, photo) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+        });
+    }
+
+    const authShare={
+        signInWithGit,creatUserWithEp,updateProfile
+    }
+
+    //get the current looged in user
+    useEffect(()=>{
+        const unSubscribe=onAuthStateChanged(auth, (loggedUser) => {
+               setUser(loggedUser)
+               setLoading(false)
+          });
+          return ()=>{
+           unSubscribe();
+          }
+      },[])
+
+      console.log(user);
 
     return (
         <div>
