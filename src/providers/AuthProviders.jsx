@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithPopup, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { GithubAuthProvider } from "firebase/auth";
 import app from '../config/firebase';
 
@@ -20,6 +20,10 @@ const AuthProviders = ({children}) => {
         return createUserWithEmailAndPassword(auth,email,pass)
     }
 
+    const handeleSignOut=()=>{
+        return signOut(auth)
+    }
+
     const updateProfile = (name, photo) => {
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
@@ -27,7 +31,7 @@ const AuthProviders = ({children}) => {
     }
 
     const authShare={
-        signInWithGit,creatUserWithEp,updateProfile
+        signInWithGit,creatUserWithEp,updateProfile,user,handeleSignOut
     }
 
     //get the current looged in user

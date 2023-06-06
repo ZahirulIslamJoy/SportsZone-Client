@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsGithub } from "react-icons/bs";
 import { AuthContext } from "../../providers/AuthProviders";
 
@@ -11,6 +11,9 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm();
+
+ 
+
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -21,7 +24,7 @@ const Login = () => {
     signInWithGit()
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        
       })
       .catch((error) => {
         const errorMessage = error.message;

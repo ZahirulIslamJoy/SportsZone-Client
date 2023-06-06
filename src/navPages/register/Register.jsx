@@ -6,7 +6,7 @@ import { AuthContext } from "../../providers/AuthProviders";
 import { updateProfile } from "firebase/auth";
 
 const Register = () => {
-  const { signInWithGit, creatUserWithEp } = useContext(AuthContext);
+  const { signInWithGit, creatUserWithEp,handleLogOut } = useContext(AuthContext);
 
   const {
     register,
@@ -22,6 +22,8 @@ const Register = () => {
     creatUserWithEp(data.email, data.password)
       .then((result) => {
         update(result,name,photo);
+        handleLogOut()
+        naviga
       })
       .catch((error) => {
         const errorMessage = error.message;
