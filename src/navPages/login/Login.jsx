@@ -3,8 +3,13 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { BsGithub } from "react-icons/bs";
 import { AuthContext } from "../../providers/AuthProviders";
+import Swal from "sweetalert2";
 
 const Login = () => {
+
+    const {handleLoginWithEp}=useContext(AuthContext);
+    const navigate=useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -15,7 +20,21 @@ const Login = () => {
  
 
   const onSubmit = (data) => {
-    console.log(data);
+    handleLoginWithEp(data.email,data.password)
+    .then((result) => {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Login Successfull',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        navigate("/")
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
   };
 
   const { signInWithGit } = useContext(AuthContext);
