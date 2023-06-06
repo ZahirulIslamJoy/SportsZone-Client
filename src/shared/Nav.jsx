@@ -1,13 +1,13 @@
-import { Button, Navbar } from "flowbite-react";
+import { Navbar } from "flowbite-react";
 import React from "react";
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 const Nav = () => {
   return (
-    <div className="bg-black">
-      <Navbar className=" bg-black w-[90%] mx-auto " fluid>
+    <div className="bg-[#081229]">
+      <Navbar className="bg-[#191D3A] w-[80%] mx-auto " fluid>
         <Navbar.Brand>
-          <span className="self-center text-white whitespace-nowrap  lg:text-3xl text-xl font-semibold">
+          <span className="self-center text-white whitespace-nowrap  lg:text-2xl text-lg font-semibold">
             Play
             <span>
               <img className="h-10 w-10 inline-flex" src={logo} alt="" />
@@ -20,18 +20,18 @@ const Nav = () => {
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
-          <Link to="/">
-            <Navbar.Link className="cursor-pointer hover:bg-blue-600 text-white">
+          <Link className="cursor-pointer  hover:bg-blue-600 text-white" to="/">
               <p>Home</p>
-            </Navbar.Link>
           </Link>
-          <Navbar.Link className="cursor-pointer  hover:bg-blue-600  text-white">
+          <Link className="cursor-pointer  hover:bg-blue-600  text-white">
             Instructors
-          </Navbar.Link>
-          <Navbar.Link className="cursor-pointer  hover:bg-blue-500  text-white">
+          </Link>
+          <Link className="cursor-pointer  hover:bg-blue-500  text-white">
             Classes
-          </Navbar.Link>
-          <Navbar.Link className="cursor-pointer  hover:bg-blue-500  text-white">Login</Navbar.Link>
+          </Link>
+            <Link to="/login" className="cursor-pointer  hover:bg-blue-500  text-white">
+              Login
+          </Link>
         </Navbar.Collapse>
       </Navbar>
     </div>
