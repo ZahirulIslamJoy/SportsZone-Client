@@ -13,10 +13,12 @@ const AuthProviders = ({children}) => {
     const gitProvider = new GithubAuthProvider();
 
     const signInWithGit=()=>{
+        setLoading(true)
         return signInWithPopup(auth,gitProvider)
     }
 
     const creatUserWithEp=(email,pass)=>{
+        setLoading(true)
         return createUserWithEmailAndPassword(auth,email,pass)
     }
 
@@ -31,11 +33,12 @@ const AuthProviders = ({children}) => {
     }
 
     const handleLoginWithEp=(email,pass)=>{
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, pass)
     }
 
     const authShare={
-        signInWithGit,creatUserWithEp,updateProfile,user,handeleSignOut,handleLoginWithEp
+        signInWithGit,creatUserWithEp,updateProfile,user,handeleSignOut,handleLoginWithEp,loading
     }
 
     //get the current looged in user
