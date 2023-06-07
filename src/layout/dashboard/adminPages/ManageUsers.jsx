@@ -4,9 +4,7 @@ import React from "react";
 import Swal from "sweetalert2";
 
 const ManageUsers = () => {
-
-
-  const { data: userData,refetch } = useQuery({
+  const { data: userData, refetch } = useQuery({
     queryKey: ["/users"],
     queryFn: async () => {
       const res = await axios.get(`${import.meta.env.VITE_URL}/users`);
@@ -15,28 +13,49 @@ const ManageUsers = () => {
     },
   });
 
-  const handleMakeAdmin=async(id)=>{
-    const role="admin"
-    const sendingRole={
-        role
+  const handleMakeAdmin = async (id) => {
+    const role = "admin";
+    const sendingRole = {
+      role,
+    };
+    const res = await axios.patch(
+      `${import.meta.env.VITE_URL}/users/${id}`,
+      sendingRole
+    );
+    const data = res.data;
+    if (data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `This User Is Admin Now`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
-    const res = await axios.patch(`${import.meta.env.VITE_URL}/users/${id}`,sendingRole);
-     const data = res.data;
-     if(data.modifiedCount>0){
-        refetch();
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `This User Is Admin Now`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-     }    
-  }
+  };
 
-
-
-  
+  const handleMakeInstructors = async (id) => {
+    const role = "instructor";
+    const sendingRole = {
+      role,
+    };
+    const res = await axios.patch(
+      `${import.meta.env.VITE_URL}/users/${id}`,
+      sendingRole
+    );
+    const data = res.data;
+    if (data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `This User Is Instructor Now`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
 
 
 
@@ -77,11 +96,7 @@ const ManageUsers = () => {
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                 >
                   <td className="px-6 py-4">{index + 1}</td>
-                  <td className="px-6 h-10 w-10 py-4">
-                    {
-                        user?.name
-                    }
-                  </td>
+                  <td className="px-6 h-10 w-10 py-4">{user?.name}</td>
                   <td
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -89,19 +104,21 @@ const ManageUsers = () => {
                     {user?.email}
                   </td>
                   <td className="px-6  py-4">{user?.role}</td>
-                  <td
-                    className="px-6  cursor-pointer py-4"
-                  >
-                   <button  onClick={()=>handleMakeInstructors(user?._id)}   className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
-                   Make Instructors
-                   </button>
+                  <td className="px-6  cursor-pointer py-4">
+                    <button
+                      onClick={() => handleMakeInstructors(user?._id)}
+                      className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
+                    >
+                      Make Instructors
+                    </button>
                   </td>
-                  <td
-                    className="px-6  cursor-pointer py-4"
-                  >
-                  <button  onClick={()=>handleMakeAdmin(user?._id)}  className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
-                   Make Admin
-                   </button>
+                  <td className="px-6  cursor-pointer py-4">
+                    <button
+                      onClick={() => handleMakeAdmin(user?._id)}
+                      className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
+                    >
+                      Make Admin
+                    </button>
                   </td>
                 </tr>
               ))}
