@@ -1,10 +1,15 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
+import useIsAdmin from "../../hooks/useIsAdmin";
+import useIsInstructor from "../../hooks/useIsInstructor";
 
 const Dashboard = () => {
-  const isAdmin = true;
   const isStudent = false;
-  const isInstructor = false;
+
+  const [isAdmin]=useIsAdmin();
+  console.log(isAdmin);
+  const [isInstructor]=useIsInstructor();
+  console.log(isInstructor);
 
   return (
     <div>
@@ -49,7 +54,7 @@ const Dashboard = () => {
                   </Link>
                 </div>
               )}
-              {isStudent && (
+              { !isAdmin && !isInstructor &&(
                 <div>
                   <Link className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                     <span className="ml-3">Selected Classes</span>

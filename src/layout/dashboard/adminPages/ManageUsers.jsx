@@ -2,12 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import Swal from "sweetalert2";
-import useIsAdmin from "../../../hooks/useIsAdmin";
 
 const ManageUsers = () => {
 
-    const [isAdmin]=useIsAdmin();
-    console.log(isAdmin);
+    
 
 
 
