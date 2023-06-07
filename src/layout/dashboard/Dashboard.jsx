@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   const isAdmin = true;
@@ -44,7 +44,7 @@ const Dashboard = () => {
                   <Link className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                     <span className="ml-3">Manage Classes</span>
                   </Link>
-                  <Link className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+                  <Link  to="manageusers" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                     <span className="ml-3">Manage Users</span>
                   </Link>
                 </div>
@@ -74,7 +74,7 @@ const Dashboard = () => {
         </aside>
         <div>
           <div className="p-4 sm:ml-64">
-            <h1>Outl</h1>
+            <Outlet></Outlet>
           </div>
         </div>
       </div>
