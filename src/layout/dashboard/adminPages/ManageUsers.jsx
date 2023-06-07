@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useEffect } from "react";
+import React from "react";
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
-  const { data: userData } = useQuery({
+
+
+  const { data: userData,refetch } = useQuery({
     queryKey: ["/users"],
     queryFn: async () => {
       const res = await axios.get(`${import.meta.env.VITE_URL}/users`);
@@ -12,7 +15,30 @@ const ManageUsers = () => {
     },
   });
 
-  console.log(userData);
+  const handleMakeAdmin=async(id)=>{
+    const role="admin"
+    const sendingRole={
+        role
+    }
+    const res = await axios.patch(`${import.meta.env.VITE_URL}/users/${id}`,sendingRole);
+     const data = res.data;
+     if(data.modifiedCount>0){
+        refetch();
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `This User Is Admin Now`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+     }    
+  }
+
+
+
+  
+
+
 
   return (
     <div>
@@ -35,6 +61,9 @@ const ManageUsers = () => {
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Current Role
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Action
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Action
@@ -63,7 +92,16 @@ const ManageUsers = () => {
                   <td
                     className="px-6  cursor-pointer py-4"
                   >
-                   Update/Delete
+                   <button  onClick={()=>handleMakeInstructors(user?._id)}   className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                   Make Instructors
+                   </button>
+                  </td>
+                  <td
+                    className="px-6  cursor-pointer py-4"
+                  >
+                  <button  onClick={()=>handleMakeAdmin(user?._id)}  className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                   Make Admin
+                   </button>
                   </td>
                 </tr>
               ))}
