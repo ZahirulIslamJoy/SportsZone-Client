@@ -52,8 +52,6 @@ const AuthProviders = ({children}) => {
           }
       },[])
 
-      console.log(user);
-
     return (
         <div>
             <AuthContext.Provider value={authShare}>

@@ -1,17 +1,19 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { BsGithub,BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
+import { BsGithub, BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { AuthContext } from "../../providers/AuthProviders";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
-  const [showConfirmPass,setShowConfirmPass]=useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
 
   const { signInWithGit, creatUserWithEp, handeleSignOut } =
     useContext(AuthContext);
+
 
   const {
     register,
@@ -20,7 +22,6 @@ const Register = () => {
   } = useForm();
 
   const navigate = useNavigate();
-  console.log(errors);
 
   const onSubmit = (data) => {
     const name = data.name;
@@ -40,18 +41,36 @@ const Register = () => {
       return;
     }
 
+    const userInfo = {
+      name,
+      email,
+      role: "student",
+    };
+
     creatUserWithEp(data.email, data.password)
       .then((result) => {
         update(result, name, photo);
         handeleSignOut();
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Registration is Complete,Login Now",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/login");
+        fetch(`${import.meta.env.VITE_URL}/users`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.upsertedCount>0) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Registration is Complete,Login Now",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/login");
+            }
+          });
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -72,7 +91,23 @@ const Register = () => {
     signInWithGit()
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        const name =user?.displayName;
+        const email=user?.email;
+        const role="student";
+        const userInfo={
+          name,email,role
+        }
+        fetch(`${import.meta.env.VITE_URL}/users`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then(data => {
+            navigate("/");
+          })
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -166,7 +201,7 @@ const Register = () => {
             <div className="relative mt-5 z-0">
               <input
                 {...register("confirmpassword", { required: true })}
-                type={showConfirmPass?"text":"password"}
+                type={showConfirmPass ? "text" : "password"}
                 id="floating_standard1"
                 className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -177,7 +212,10 @@ const Register = () => {
               >
                 Confirm Password*
               </label>
-              <div onClick={() => setShowConfirmPass(!showConfirmPass)} className="mt-2">
+              <div
+                onClick={() => setShowConfirmPass(!showConfirmPass)}
+                className="mt-2"
+              >
                 {showConfirmPass ? (
                   <BsFillEyeSlashFill></BsFillEyeSlashFill>
                 ) : (

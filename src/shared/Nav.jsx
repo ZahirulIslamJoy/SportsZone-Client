@@ -15,7 +15,7 @@ const Nav = () => {
 
   return (
     <div className="bg-[#1e2a4a]">
-      <Navbar className="   bg-[#1e2a4a]  w-[80%] mx-auto " fluid>
+      <Navbar className="w-[80%] bg-[#1e2a4b] mx-auto " fluid>
         <Navbar.Brand>
           <span className="self-center text-white whitespace-nowrap  lg:text-2xl text-lg font-semibold">
             Play
