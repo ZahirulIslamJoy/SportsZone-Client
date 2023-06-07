@@ -14,7 +14,7 @@ const Nav = () => {
   }
 
   return (
-    <div className="bg-[#081229]">
+    <div className="bg-[#1e2a4a]">
       <Navbar className="   bg-[#1e2a4a]  w-[80%] mx-auto " fluid>
         <Navbar.Brand>
           <span className="self-center text-white whitespace-nowrap  lg:text-2xl text-lg font-semibold">
@@ -45,7 +45,7 @@ const Nav = () => {
 
           {user ? (
             <span className="flex flex-col lg:flex-row lg:gap-5 ">
-              <Link className="cursor-pointer  hover:bg-blue-500  text-white">
+              <Link to="/dashboard" className="cursor-pointer  hover:bg-blue-500  text-white">
                 Dashboard
               </Link>
               <Link
