@@ -20,7 +20,11 @@ const Login = () => {
  
 
   const onSubmit = (data) => {
-    handleLoginWithEp(data.email,data.password)
+
+    const email=data.email;
+    const password=data.password;
+
+    handleLoginWithEp(email,password)
     .then((result) => {
         Swal.fire({
             position: 'top-end',
@@ -32,8 +36,13 @@ const Login = () => {
         navigate("/")
       })
       .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Provide Valid Email And Password',
+          showConfirmButton: false,
+          timer: 1500
+        })
       });
   };
 

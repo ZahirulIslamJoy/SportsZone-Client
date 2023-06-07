@@ -16,10 +16,33 @@ const Register = () => {
   } = useForm();
 
   const navigate=useNavigate();
+  console.log(errors)
 
   const onSubmit = (data) => {
     const name=data.name;
     const photo=data.photo;
+    const email=data.email;
+    const password=data.password;
+    const confirmpass=data.confirmpassword;
+ 
+    
+
+    if(password !== confirmpass){
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Password and Confirm Password must be same',
+        showConfirmButton: false,
+        timer: 1500
+      })
+        return;
+    }
+
+
+
+
+
+
     creatUserWithEp(data.email, data.password)
       .then((result) => {
         update(result,name,photo);
@@ -69,7 +92,7 @@ const Register = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="relative  z-0">
               <input
-                {...register("name")}
+                {...register("name",{ required: true })}
                 type="text"
                 id="floating_standard"
                 className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -79,12 +102,13 @@ const Register = () => {
                 htmlFor="floating_standard"
                 className="absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Name
+                Name*
               </label>
+              {errors.name?.type === 'required' && <p className="text-red-600"  role="alert">Name is required</p>}
             </div>
             <div className="relative mt-5  z-0">
               <input
-                {...register("email")}
+                {...register("email",{ required: true })}
                 type="email"
                 id="floating_standard"
                 className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -94,13 +118,14 @@ const Register = () => {
                 htmlFor="floating_standard"
                 className="absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Email
+                Email*
               </label>
+              {errors.email?.type === 'required' && <p className="text-red-600"  role="alert">Email is required</p>}
             </div>
             <div className="relative mt-5 z-0">
               <input
-                {...register("password")}
-                type="password"
+                {...register("password",{ required: true,pattern:/^(?=.*[A-Z])(?=.*[@#$%!*^&+=~])/ })}
+                type="text"
                 id="floating_standard1"
                 className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -109,13 +134,15 @@ const Register = () => {
                 htmlFor="floating_standard1"
                 className="absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Password
+                Password*
               </label>
+              {errors.password?.type === 'required' && <p className="text-red-600"  role="alert">Password is required</p>}
+              {errors.password?.type === 'pattern' && <p className="text-red-600"  role="alert">Password must Contains One Uppercase and a Special Character </p>}
             </div>
             <div className="relative mt-5 z-0">
               <input
-                {...register("confirmpassword")}
-                type="password"
+                {...register("confirmpassword",{ required: true })}
+                type="text"
                 id="floating_standard1"
                 className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -124,12 +151,13 @@ const Register = () => {
                 htmlFor="floating_standard1"
                 className="absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Confirm Password
+                Confirm Password*
               </label>
+              {errors.confirmpassword?.type === 'required' && <p className="text-red-600"  role="alert">Confirm Password is required</p>}
             </div>
             <div className="relative mt-5  z-0">
               <input
-                {...register("photo")}
+                {...register("photo",{ required: true })}
                 type="text"
                 id="floating_standard"
                 className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -139,14 +167,15 @@ const Register = () => {
                 htmlFor="floating_standard"
                 className="absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Photo Url
+                Photo Url*
               </label>
+              {errors.photo?.type === 'required' && <p className="text-red-600"  role="alert">Photo Url is required</p>}
             </div>
             <button
               type="submit"
               className="text-white mt-5 bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none "
             >
-              Login
+            Register
             </button>
           </form>
           <p>

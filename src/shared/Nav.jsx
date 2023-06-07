@@ -15,7 +15,7 @@ const Nav = () => {
 
   return (
     <div className="bg-[#081229]">
-      <Navbar className="bg-[#191D3A] w-[80%] mx-auto " fluid>
+      <Navbar className="   bg-[#1e2a4a]  w-[80%] mx-auto " fluid>
         <Navbar.Brand>
           <span className="self-center text-white whitespace-nowrap  lg:text-2xl text-lg font-semibold">
             Play
@@ -50,7 +50,6 @@ const Nav = () => {
               </Link>
               <Link
               onClick={handleLogOut}
-                to="/login"
                 className="cursor-pointer  hover:bg-blue-500  text-white"
               >
                 LogOut
@@ -71,3 +70,6 @@ const Nav = () => {
 };
 
 export default Nav;
+
+
+// bg-[#191D3A]
