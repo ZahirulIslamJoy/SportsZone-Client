@@ -2,8 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import Swal from "sweetalert2";
+import useIsAdmin from "../../../hooks/useIsAdmin";
 
 const ManageUsers = () => {
+
+    const [isAdmin]=useIsAdmin();
+    console.log(isAdmin);
+
+
+
   const { data: userData, refetch } = useQuery({
     queryKey: ["/users"],
     queryFn: async () => {
@@ -106,6 +113,7 @@ const ManageUsers = () => {
                   <td className="px-6  py-4">{user?.role}</td>
                   <td className="px-6  cursor-pointer py-4">
                     <button
+                     disabled={user?.role == "instructor"}
                       onClick={() => handleMakeInstructors(user?._id)}
                       className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
                     >
@@ -114,6 +122,7 @@ const ManageUsers = () => {
                   </td>
                   <td className="px-6  cursor-pointer py-4">
                     <button
+                    disabled={user?.role == "admin"}
                       onClick={() => handleMakeAdmin(user?._id)}
                       className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
                     >
