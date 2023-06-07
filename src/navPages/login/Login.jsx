@@ -1,14 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { BsGithub } from "react-icons/bs";
+import { BsGithub, BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 
 const Login = () => {
-
-    const {handleLoginWithEp}=useContext(AuthContext);
-    const navigate=useNavigate();
+  const [showPass, setShowPass] = useState(false);
 
   const {
     register,
@@ -17,32 +15,32 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
- 
+  const { handleLoginWithEp } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
+    const email = data.email;
+    const password = data.password;
 
-    const email=data.email;
-    const password=data.password;
-
-    handleLoginWithEp(email,password)
-    .then((result) => {
+    handleLoginWithEp(email, password)
+      .then((result) => {
         Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Login Successfull',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        navigate("/")
+          position: "top-end",
+          icon: "success",
+          title: "Login Successfull",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
       })
       .catch((error) => {
         Swal.fire({
-          position: 'top-end',
-          icon: 'error',
-          title: 'Provide Valid Email And Password',
+          position: "top-end",
+          icon: "error",
+          title: "Provide Valid Email And Password",
           showConfirmButton: false,
-          timer: 1500
-        })
+          timer: 1500,
+        });
       });
   };
 
@@ -52,11 +50,10 @@ const Login = () => {
     signInWithGit()
       .then((result) => {
         const user = result.user;
-        
       })
       .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage)
+        console.log(errorMessage);
       });
   };
 
@@ -85,7 +82,7 @@ const Login = () => {
           <div className="relative mt-5 z-0">
             <input
               {...register("password")}
-              type="password"
+              type={showPass ? "text" : "password"}
               id="floating_standard1"
               className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
@@ -96,6 +93,14 @@ const Login = () => {
             >
               Password
             </label>
+          </div>
+          <div onClick={() => setShowPass(!showPass)} className="mt-2">
+            {showPass ? (
+             <BsFillEyeSlashFill></BsFillEyeSlashFill>
+            ) : (
+              <BsFillEyeFill></BsFillEyeFill>
+              
+            )}
           </div>
           <button
             type="submit"

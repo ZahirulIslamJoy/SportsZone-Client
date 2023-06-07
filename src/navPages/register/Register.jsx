@@ -1,13 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { BsGithub } from "react-icons/bs";
+import { BsGithub,BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { AuthContext } from "../../providers/AuthProviders";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
 
 const Register = () => {
-  const { signInWithGit, creatUserWithEp,handeleSignOut } = useContext(AuthContext);
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass,setShowConfirmPass]=useState(false);
+
+  const { signInWithGit, creatUserWithEp, handeleSignOut } =
+    useContext(AuthContext);
 
   const {
     register,
@@ -15,46 +19,39 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const navigate=useNavigate();
-  console.log(errors)
+  const navigate = useNavigate();
+  console.log(errors);
 
   const onSubmit = (data) => {
-    const name=data.name;
-    const photo=data.photo;
-    const email=data.email;
-    const password=data.password;
-    const confirmpass=data.confirmpassword;
- 
-    
+    const name = data.name;
+    const photo = data.photo;
+    const email = data.email;
+    const password = data.password;
+    const confirmpass = data.confirmpassword;
 
-    if(password !== confirmpass){
+    if (password !== confirmpass) {
       Swal.fire({
-        position: 'top-end',
-        icon: 'error',
-        title: 'Password and Confirm Password must be same',
+        position: "top-end",
+        icon: "error",
+        title: "Password and Confirm Password must be same",
         showConfirmButton: false,
-        timer: 1500
-      })
-        return;
+        timer: 1500,
+      });
+      return;
     }
-
-
-
-
-
 
     creatUserWithEp(data.email, data.password)
       .then((result) => {
-        update(result,name,photo);
-        handeleSignOut()
+        update(result, name, photo);
+        handeleSignOut();
         Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Registration is Complete,Login Now',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        navigate("/login")
+          position: "top-end",
+          icon: "success",
+          title: "Registration is Complete,Login Now",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/login");
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -62,13 +59,14 @@ const Register = () => {
       });
   };
 
-  const update=(user,name,photo)=>{
+  const update = (user, name, photo) => {
     updateProfile(user.user, {
-      displayName:name, photoURL:photo
-    }).then(() => {
-    }).catch((error) => {
-    });
-  }
+      displayName: name,
+      photoURL: photo,
+    })
+      .then(() => {})
+      .catch((error) => {});
+  };
 
   const handleGithubLogin = () => {
     signInWithGit()
@@ -92,7 +90,7 @@ const Register = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="relative  z-0">
               <input
-                {...register("name",{ required: true })}
+                {...register("name", { required: true })}
                 type="text"
                 id="floating_standard"
                 className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -104,11 +102,15 @@ const Register = () => {
               >
                 Name*
               </label>
-              {errors.name?.type === 'required' && <p className="text-red-600"  role="alert">Name is required</p>}
+              {errors.name?.type === "required" && (
+                <p className="text-red-600" role="alert">
+                  Name is required
+                </p>
+              )}
             </div>
             <div className="relative mt-5  z-0">
               <input
-                {...register("email",{ required: true })}
+                {...register("email", { required: true })}
                 type="email"
                 id="floating_standard"
                 className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -120,12 +122,19 @@ const Register = () => {
               >
                 Email*
               </label>
-              {errors.email?.type === 'required' && <p className="text-red-600"  role="alert">Email is required</p>}
+              {errors.email?.type === "required" && (
+                <p className="text-red-600" role="alert">
+                  Email is required
+                </p>
+              )}
             </div>
             <div className="relative mt-5 z-0">
               <input
-                {...register("password",{ required: true,pattern:/^(?=.*[A-Z])(?=.*[@#$%!*^&+=~])/ })}
-                type="text"
+                {...register("password", {
+                  required: true,
+                  pattern: /^(?=.*[A-Z])(?=.*[@#$%!*^&+=~])/,
+                })}
+                type={showPass ? "text" : "password"}
                 id="floating_standard1"
                 className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -136,13 +145,28 @@ const Register = () => {
               >
                 Password*
               </label>
-              {errors.password?.type === 'required' && <p className="text-red-600"  role="alert">Password is required</p>}
-              {errors.password?.type === 'pattern' && <p className="text-red-600"  role="alert">Password must Contains One Uppercase and a Special Character </p>}
+              <div onClick={() => setShowPass(!showPass)} className="mt-2">
+                {showPass ? (
+                  <BsFillEyeSlashFill></BsFillEyeSlashFill>
+                ) : (
+                  <BsFillEyeFill></BsFillEyeFill>
+                )}
+              </div>
+              {errors.password?.type === "required" && (
+                <p className="text-red-600" role="alert">
+                  Password is required
+                </p>
+              )}
+              {errors.password?.type === "pattern" && (
+                <p className="text-red-600" role="alert">
+                  Password must Contains One Uppercase and a Special Character{" "}
+                </p>
+              )}
             </div>
             <div className="relative mt-5 z-0">
               <input
-                {...register("confirmpassword",{ required: true })}
-                type="text"
+                {...register("confirmpassword", { required: true })}
+                type={showConfirmPass?"text":"password"}
                 id="floating_standard1"
                 className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
@@ -153,11 +177,22 @@ const Register = () => {
               >
                 Confirm Password*
               </label>
-              {errors.confirmpassword?.type === 'required' && <p className="text-red-600"  role="alert">Confirm Password is required</p>}
+              <div onClick={() => setShowConfirmPass(!showConfirmPass)} className="mt-2">
+                {showConfirmPass ? (
+                  <BsFillEyeSlashFill></BsFillEyeSlashFill>
+                ) : (
+                  <BsFillEyeFill></BsFillEyeFill>
+                )}
+              </div>
+              {errors.confirmpassword?.type === "required" && (
+                <p className="text-red-600" role="alert">
+                  Confirm Password is required
+                </p>
+              )}
             </div>
             <div className="relative mt-5  z-0">
               <input
-                {...register("photo",{ required: true })}
+                {...register("photo", { required: true })}
                 type="text"
                 id="floating_standard"
                 className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -169,13 +204,17 @@ const Register = () => {
               >
                 Photo Url*
               </label>
-              {errors.photo?.type === 'required' && <p className="text-red-600"  role="alert">Photo Url is required</p>}
+              {errors.photo?.type === "required" && (
+                <p className="text-red-600" role="alert">
+                  Photo Url is required
+                </p>
+              )}
             </div>
             <button
               type="submit"
               className="text-white mt-5 bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none "
             >
-            Register
+              Register
             </button>
           </form>
           <p>
