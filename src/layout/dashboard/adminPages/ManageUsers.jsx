@@ -15,7 +15,7 @@ const ManageUsers = () => {
     queryKey: ["/users"],
     enabled:!loading,
     queryFn: async () => {
-      const res = await axiosSecure.get(`${import.meta.env.VITE_URL}/users?email=${email}`);
+      const res = await axiosSecure.get(`/users?email=${email}`);
       const data = res.data;
       return data;
     },

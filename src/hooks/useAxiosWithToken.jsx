@@ -8,7 +8,7 @@ const axiosSecure = axios.create({
 });
 
 const useAxiosWithToken = () => {
-  const { logOut } = useContext(AuthContext);
+  const { handeleSignOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const token = localStorage.getItem("access-token");
@@ -27,13 +27,13 @@ const useAxiosWithToken = () => {
           error.response &&
           (error.response.status === 401 || error.response.status === 403)
         ) {
-          await logOut();
+          await handeleSignOut();
           navigate("/login");
         }
         return Promise.reject(error);
       }
     );
-  }, [logOut, navigate, axiosSecure]);
+  }, [handeleSignOut, navigate, axiosSecure]);
 
   return [axiosSecure];
 };

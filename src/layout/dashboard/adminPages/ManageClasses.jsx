@@ -1,0 +1,121 @@
+import React, { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProviders";
+import useAxiosWithToken from "../../../hooks/useAxiosWithToken";
+import { useQuery } from "@tanstack/react-query";
+
+const ManageClasses = () => {
+  const { loading } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosWithToken();
+
+  const { data: allclassData, refetch: allclassDataRefetch } = useQuery({
+    queryKey: [`/allclasses`],
+    enabled: !loading,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`allclasses`);
+      const data = res.data;
+      return data;
+    },
+  });
+
+  console.log(allclassData);
+
+  return (
+    <div>
+      <h1 className="text-3xl mt-12 mb-12 text-center">
+        Manage Classes Here!!
+      </h1>
+      <div>
+        <div className="relative overflow-x-auto">
+          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" className="px-1 py-3">
+                  Serial No
+                </th>
+                <th scope="col" className="px-6 ml-6 py-3">
+                  Image
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Class Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Instructor Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Email
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Seats
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Price
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Status
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Action
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Action
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {allclassData?.map((classes, index) => (
+                <tr
+                  key={classes._id}
+                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                >
+                  <td className="px-6 py-4">{index + 1}</td>
+                  <td className="px-6  py-4">
+                    <img className="h-10 rounded-xl  w-10" src={classes?.image} alt="" />
+                  </td>
+                  <td
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {classes?.className}
+                  </td>
+                  <td className="px-6  py-4">{classes?.instructorName}</td>
+                  <td className="px-6  cursor-pointer py-4">
+                    {classes?.instructorEmail}
+                  </td>
+                  <td className="px-6  cursor-pointer py-4">
+                    {classes?.seats}
+                  </td>
+                  <td className="px-6  cursor-pointer py-4">
+                    {classes?.price}
+                  </td>
+                  <td className="px-6  cursor-pointer py-4">
+                    {classes?.status}
+                  </td>
+                  <td className="px-6  cursor-pointer py-4">
+                    <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                      Approve
+                    </button>
+                  </td>
+                  <td className="px-6  cursor-pointer py-4">
+                    <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                      Deny
+                    </button>
+                    </td>
+                    <td className="px-6  cursor-pointer py-4">
+                      <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                        Feedback
+                      </button>
+                    </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ManageClasses;

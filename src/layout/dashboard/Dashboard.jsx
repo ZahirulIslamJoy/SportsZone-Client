@@ -16,7 +16,7 @@ const Dashboard = () => {
         <div className=" font-medium">
           {isAdmin && (
             <div>
-              <Link className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+              <Link to="manageclasses" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                 <span className="ml-3">Manage Classes</span>
               </Link>
               <Link
@@ -42,7 +42,7 @@ const Dashboard = () => {
               <Link to="addclass" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                 <span className="ml-3">Add Class</span>
               </Link>
-              <Link className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+              <Link to="myclass" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                 <span className="ml-3">My Classes</span>
               </Link>
             </div>
@@ -62,7 +62,7 @@ const Dashboard = () => {
               </Link>
               {isAdmin && (
                 <div>
-                  <Link className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+                  <Link to="manageclasses" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                     <span className="ml-3">Manage Classes</span>
                   </Link>
                   <Link
@@ -88,7 +88,7 @@ const Dashboard = () => {
                   <Link to="addclass" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                     <span className="ml-3">Add Class</span>
                   </Link>
-                  <Link className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+                  <Link to="myclass" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                     <span className="ml-3">My Classes</span>
                   </Link>
                 </div>
@@ -97,7 +97,7 @@ const Dashboard = () => {
           </div>
         </aside>
         <div>
-          <div className="p-4 sm:ml-64">
+          <div className="p-4 sm:ml-40">
             <Outlet></Outlet>
           </div>
         </div>
