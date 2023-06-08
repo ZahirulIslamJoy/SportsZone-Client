@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProviders";
 import useAxiosWithToken from "../../../hooks/useAxiosWithToken";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const ManageClasses = () => {
   const { loading } = useContext(AuthContext);
@@ -17,7 +18,39 @@ const ManageClasses = () => {
     },
   });
 
-  console.log(allclassData);
+  const handleApprove = async (id) => {
+    const status = "approved";
+    const newStatus = { status };
+    const res = await axiosSecure.patch(`/classes/${id}`, newStatus);
+    const data = res.data;
+    if (data.modifiedCount > 0) {
+      allclassDataRefetch();
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Class Is Approved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
+  const handleDeny = async (id) => {
+    const status = "denied";
+    const newStatus = { status };
+    const res = await axiosSecure.patch(`/classes/${id}`, newStatus);
+    const data = res.data;
+    if (data.modifiedCount > 0) {
+      allclassDataRefetch();
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "This Class Is Denied",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
 
   return (
     <div>
@@ -72,7 +105,11 @@ const ManageClasses = () => {
                 >
                   <td className="px-6 py-4">{index + 1}</td>
                   <td className="px-6  py-4">
-                    <img className="h-10 rounded-xl  w-10" src={classes?.image} alt="" />
+                    <img
+                      className="h-10 rounded-xl  w-10"
+                      src={classes?.image}
+                      alt=""
+                    />
                   </td>
                   <td
                     scope="row"
@@ -94,20 +131,34 @@ const ManageClasses = () => {
                     {classes?.status}
                   </td>
                   <td className="px-6  cursor-pointer py-4">
-                    <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                    <button
+                      disabled={
+                        classes?.status == "approved" ||
+                        classes?.status == "denied"
+                      }
+                      onClick={() => handleApprove(classes._id)}
+                      className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
+                    >
                       Approve
                     </button>
                   </td>
                   <td className="px-6  cursor-pointer py-4">
-                    <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                    <button
+                      onClick={() => handleDeny(classes._id)}
+                      disabled={
+                        classes?.status == "approved" ||
+                        classes?.status == "denied"
+                      }
+                      className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
+                    >
                       Deny
                     </button>
-                    </td>
-                    <td className="px-6  cursor-pointer py-4">
-                      <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
-                        Feedback
-                      </button>
-                    </td>
+                  </td>
+                  <td className="px-6  cursor-pointer py-4">
+                    <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                      Feedback
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
