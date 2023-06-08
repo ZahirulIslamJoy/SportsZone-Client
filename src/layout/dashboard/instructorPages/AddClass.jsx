@@ -8,15 +8,17 @@ const AddClass = () => {
   const imageKey = import.meta.env.VITE_imageKey;
   const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageKey}`;
 
+
+  const instructorName=user?.displayName;
+  const instructorEmail=user?.email;
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  console.log(errors)
   const onSubmit = (data) => {
-    console.log(data);
     const formData = new FormData();
     formData.append("image", data.classimage[0]);
 
@@ -27,16 +29,20 @@ const AddClass = () => {
       .then((res) => res.json())
       .then((imgdata) => {
         console.log(imgdata)
-        // if (imgdata.success) {
-        //   const imageUrl = imgdata.data.display_url;
-        //   const { name, price, category, recipe } = data;
-        //   const newItem = {
-        //     name,
-        //     price: parseFloat(price),
-        //     category,
-        //     recipe,
-        //     image: imageUrl,
-        //   };
+        if (imgdata.success) {
+          const imageUrl = imgdata.data.display_url;
+          const { className, seats, price} = data;
+          const newClass = {
+            className,
+            instructorName,
+            instructorEmail,
+            price: parseFloat(price),
+            seats:parseFloat(seats),
+            image: imageUrl,
+            status:"pending"
+          };
+          console.log(newClass);
+        }
         //   axiosSecure.post("/menu", newItem).then((data) => {
         //     if (data.data.insertedId) {
         //       Swal.fire({
@@ -110,7 +116,7 @@ const AddClass = () => {
             className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5"
           />
           <label className="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-white">
-           Avaliable Seats
+           Price
           </label>
           <input
             {...register("price")}
