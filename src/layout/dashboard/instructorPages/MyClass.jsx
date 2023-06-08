@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProviders";
 import useAxiosWithToken from "../../../hooks/useAxiosWithToken";
+import { Link, Outlet } from "react-router-dom";
 
 const MyClass = () => {
   const { user, loading } = useContext(AuthContext);
@@ -19,12 +20,6 @@ const MyClass = () => {
   });
 
   console.log(myclassData);
-
-  const handleUpdate=()=>{
-        
-  }
-
-
 
   return (
     <div>
@@ -47,13 +42,13 @@ const MyClass = () => {
                     Avaliable Seats
                   </th>
                   <th scope="col" className="px-6 py-3">
-                   Price
+                    Price
                   </th>
                   <th scope="col" className="px-6 py-3">
                     Total Enrolled
                   </th>
                   <th scope="col" className="px-6 py-3">
-                   Status
+                    Status
                   </th>
                   <th scope="col" className="px-6 py-3">
                     Action
@@ -80,15 +75,18 @@ const MyClass = () => {
                     <td className="px-6  cursor-pointer py-4">
                       {classes.status}
                     </td>
-                    <td className="px-6  cursor-pointer py-4">
-                      <button onClick={()=>handleUpdate(classes._id)}
-                        className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
-                      >
-                       Update
-                      </button>
+                    <td  className="px-6  cursor-pointer py-4">
+                      <Link to={`/dashboard/update/${classes?._id}`}>
+                        <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                          Update
+                        </button>
+                      </Link>
                     </td>
-                    <td className="px-6  cursor-pointer py-4">   
-                        {classes.status === "pending" || classes.status === "approved" ? "" : classes?.feedback }
+                    <td className="px-6  cursor-pointer py-4">
+                      {classes.status === "pending" ||
+                      classes.status === "approved"
+                        ? ""
+                        : classes?.feedback}
                     </td>
                   </tr>
                 ))}
