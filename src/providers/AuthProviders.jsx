@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { GithubAuthProvider } from "firebase/auth";
 import app from '../config/firebase';
+import axios from 'axios';
 
 
 export const AuthContext=createContext();
@@ -44,8 +45,21 @@ const AuthProviders = ({children}) => {
     //get the current looged in user
     useEffect(()=>{
         const unSubscribe=onAuthStateChanged(auth, (loggedUser) => {
-               setUser(loggedUser)
-               setLoading(false)
+            setUser(loggedUser);
+            const email=loggedUser?.email;
+            const sendingEmail={email}
+            if(loggedUser){
+            axios.post(`${import.meta.env.VITE_URL}/jwt`,sendingEmail)
+                .then(res=>{
+                   const token=res.data.token;
+                   localStorage.setItem("access-token",token)
+                   setLoading(false)
+                })
+            }
+            else{
+                localStorage.removeItem("access-token")
+                setLoading(false)
+            }
           });
           return ()=>{
            unSubscribe();
