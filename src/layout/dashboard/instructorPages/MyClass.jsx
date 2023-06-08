@@ -20,6 +20,12 @@ const MyClass = () => {
 
   console.log(myclassData);
 
+  const handleUpdate=()=>{
+        
+  }
+
+
+
   return (
     <div>
       <h1 className="text-3xl mt-12 mb-12 text-center">
@@ -33,6 +39,9 @@ const MyClass = () => {
                 <tr>
                   <th scope="col" className="px-1 py-3">
                     Serial No
+                  </th>
+                  <th scope="col" className="px-1 py-3">
+                    Class Name
                   </th>
                   <th scope="col" className="px-6 ml-6 py-3">
                     Avaliable Seats
@@ -59,7 +68,8 @@ const MyClass = () => {
                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                   >
                     <td className="px-6 py-4">{index + 1}</td>
-                    <td className="px-6 h-10 w-10 py-4">{classes?.seats}</td>
+                    <td className="px-6  py-4">{classes?.className}</td>
+                    <td className="px-6  py-4">{classes?.seats}</td>
                     <td
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -71,13 +81,14 @@ const MyClass = () => {
                       {classes.status}
                     </td>
                     <td className="px-6  cursor-pointer py-4">
-                      <button
+                      <button onClick={()=>handleUpdate(classes._id)}
                         className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
                       >
                        Update
                       </button>
                     </td>
-                    <td className="px-6  cursor-pointer py-4">
+                    <td className="px-6  cursor-pointer py-4">   
+                        {classes.status === "pending" || classes.status === "approved" ? "" : classes?.feedback }
                     </td>
                   </tr>
                 ))}

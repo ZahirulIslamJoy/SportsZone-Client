@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProviders";
 import useAxiosWithToken from "../../../hooks/useAxiosWithToken";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import { Button, Modal } from "flowbite-react";
 
 const ManageClasses = () => {
   const { loading } = useContext(AuthContext);
@@ -46,6 +47,43 @@ const ManageClasses = () => {
         position: "top-end",
         icon: "success",
         title: "This Class Is Denied",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
+  const showModal = async (id) => {
+    const { value: text } = await Swal.fire({
+      input: "textarea",
+      inputLabel: "Message",
+      inputPlaceholder: "Type your message here...",
+      inputAttributes: {
+        "aria-label": "Type your message here",
+      },
+      showCancelButton: true,
+    });
+
+    if (text) {
+       const feedback=text;
+       const sendingFeedback={feedback}
+       const res = await axiosSecure.patch(`/class/${id}`, sendingFeedback);
+       const data = res.data;
+       if (data.modifiedCount > 0) {
+         Swal.fire({
+           position: "top-end",
+           icon: "success",
+           title: "Feedback Send To The Instructor",
+           showConfirmButton: false,
+           timer: 1500,
+         });
+       }
+
+    } else {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Please Provide Some Feedback",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -155,7 +193,10 @@ const ManageClasses = () => {
                     </button>
                   </td>
                   <td className="px-6  cursor-pointer py-4">
-                    <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                    <button
+                      onClick={()=>showModal(classes._id)}
+                      className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
+                    >
                       Feedback
                     </button>
                   </td>
