@@ -9,7 +9,7 @@ const useIsAdmin = () => {
     const email=user?.email;
 
 
-  const { data: isAdmin, refetch:adminRefetch } = useQuery({
+  const { data: isAdmin, refetch:adminRefetch,isLoading:adminLoading } = useQuery({
     queryKey: ["/users/admin",email],
     enabled:!loading,
     queryFn: async () => {
@@ -19,7 +19,7 @@ const useIsAdmin = () => {
     },
   });
 
-    return [isAdmin,adminRefetch]
+    return [isAdmin,adminLoading]
 };
 
 export default useIsAdmin;

@@ -1,11 +1,13 @@
 import { Navbar } from "flowbite-react";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
+import { initFlowbite } from "flowbite";
 const Nav = () => {
   const { user, handeleSignOut } = useContext(AuthContext);
 
+     
   const handleLogOut = () => {
     handeleSignOut();
     then(() => {}).catch((error) => {});
@@ -14,7 +16,7 @@ const Nav = () => {
   return (
     <div className="bg-[#1e2a4b]">
       <div >
-        <Navbar  className="w-[80%] bg mx-auto " fluid>
+        <Navbar  className="w-[80%]  bg mx-auto " fluid>
           <Navbar.Brand>
             <span className="self-center text-white whitespace-nowrap  lg:text-2xl text-lg font-semibold">
               Play Zone

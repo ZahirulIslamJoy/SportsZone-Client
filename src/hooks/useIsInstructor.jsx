@@ -7,7 +7,7 @@ const useIsInstructor = () => {
     const {user,loading}=useContext(AuthContext);
     const email=user?.email;
 
-    const { data: isInstructors, refetch:instructorRefetch } = useQuery({
+    const { data: isInstructors, refetch:instructorRefetch,isLoading:instructorLoading } = useQuery({
     queryKey: ["/users/instructor",email],
     enabled:!loading,
     queryFn: async () => {
@@ -17,7 +17,7 @@ const useIsInstructor = () => {
     },
   });
 
-    return [isInstructors,instructorRefetch]
+    return [isInstructors,instructorLoading]
 };
 
 export default useIsInstructor;
