@@ -1,18 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import Swal from "sweetalert2";
+import useAxiosWithToken from "../../../hooks/useAxiosWithToken";
+import { AuthContext } from "../../../providers/AuthProviders";
 
 const ManageUsers = () => {
 
-    
-
-
+  const [axiosSecure]=useAxiosWithToken();
+  const {user,loading}=useContext(AuthContext);
+  const email=user?.email;
 
   const { data: userData, refetch } = useQuery({
     queryKey: ["/users"],
+    enabled:!loading,
     queryFn: async () => {
-      const res = await axios.get(`${import.meta.env.VITE_URL}/users`);
+      const res = await axiosSecure.get(`${import.meta.env.VITE_URL}/users?email=${email}`);
       const data = res.data;
       return data;
     },

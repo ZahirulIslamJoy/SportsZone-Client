@@ -36,7 +36,7 @@ const Dashboard = () => {
 
         <aside
           id="default-sidebar"
-          className="fixed   lg:top-[60px] left-0 z-40  h-screen transition-transform -translate-x-full sm:translate-x-0"
+          className="fixed    lg:top-[60px] left-0 z-40  h-screen transition-transform -translate-x-full sm:translate-x-0"
           aria-label="Sidebar"
         >
           <div className="h-full px-3 py-4 overflow-y-auto bg-[#1e2a4a] ">
