@@ -10,7 +10,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPEPK);
 const Payment = () => {
   console.log(stripePromise);
   const id = useParams().id;
-  const [SelectedClass] = useAddedClass();
+  const [SelectedClass,refetch] = useAddedClass();
   console.log(SelectedClass);
   const paymentClass = SelectedClass?.find(
     (singleClass) => singleClass._id == id
@@ -22,10 +22,12 @@ const Payment = () => {
       <h1 className="text-3xl mt-12 mb-4 text-center">
         Make Payment For The Enrollment
       </h1>
-      <h1 className="text-3xl mt-12 mb-8 text-center">To Pay: ${payAmount}</h1>
+      <h1 className="text-3xl mt-12 mb-8 text-center">{
+        payAmount ?<p>To Pay: {payAmount}</p>:<p>To Pay: 0</p>
+      } </h1>
       <div>
         <Elements  stripe={stripePromise}>
-          <CheckoutForm paymentClass={paymentClass}  payAmount={payAmount}  />
+          <CheckoutForm refetch={refetch} paymentClass={paymentClass}  payAmount={payAmount}  />
         </Elements>
       </div>
     </div>

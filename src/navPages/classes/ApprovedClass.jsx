@@ -37,8 +37,10 @@ const ApprovedClass = () => {
     const className = selectedClass.className;
     const instructor = selectedClass.instructorName;
     const price = selectedClass.price;
+    const classId=id;
     const selectedClassInfo = {
       email,
+      classId,
       className,
       instructor,
       price,

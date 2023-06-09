@@ -5,8 +5,9 @@ import Swal from "sweetalert2";
 import useAxiosWithToken from "../../../../hooks/useAxiosWithToken";
 import { useContext } from "react";
 import { AuthContext } from "../../../../providers/AuthProviders";
+import { useNavigate } from "react-router-dom";
 
-const CheckoutForm = ({ payAmount,paymentClass }) => {
+const CheckoutForm = ({ payAmount,paymentClass,refetch }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
@@ -16,6 +17,7 @@ const CheckoutForm = ({ payAmount,paymentClass }) => {
   const price = {
     payAmount,
   };
+  const navigate=useNavigate();
 
   useEffect(() => {
     if (price != null && price !== undefined && price !== 0) {
@@ -53,7 +55,7 @@ const CheckoutForm = ({ payAmount,paymentClass }) => {
         timer: 2000,
       });
     } else {
-      console.log("[PaymentMethod]", paymentMethod);
+    //   console.log("[PaymentMethod]", paymentMethod);
     }
 
     const { paymentIntent, error: confirmError } =
@@ -67,10 +69,10 @@ const CheckoutForm = ({ payAmount,paymentClass }) => {
         },
       });
 
-    setProcessing(false);
 
     if (confirmError) {
       console.log(confirmError);
+      setProcessing(false);
     }
 
     if (paymentIntent.status == "succeeded") {
@@ -79,14 +81,29 @@ const CheckoutForm = ({ payAmount,paymentClass }) => {
         txId: paymentIntent.id,
         date: new Date(),
         payAmount,
-        classId:paymentClass?._id,
+        selectedclassId:paymentClass?._id,
+        classId:paymentClass.classId,
         className:paymentClass?.className,
         instructor:paymentClass?.instructor          
       };
-      console.log(paymentInfo);
+    //   console.log(paymentInfo);
+      axiosSecure.post(`/payments`,paymentInfo)
+      .then(res =>{
+            console.log(res.data);
+            if(res.data.modifiedClassResult.modifiedCount >0 && res.data.paymentResult.insertedId && res.data.selectedClassResult.deletedCount>0){
+                setProcessing(false);
+                navigate("/dashboard/enrollclass")
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'You Have Successfully Enrolled This Course',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+      })
     }
   };
-
   return (
     <form onSubmit={handleSubmit}>
       <CardElement

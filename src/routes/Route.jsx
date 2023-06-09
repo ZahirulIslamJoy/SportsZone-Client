@@ -18,6 +18,7 @@ import Instructors from "../navPages/instructors/Instructors";
 import StudentRoute from "./StudentRoute";
 import SelectedClass from "../layout/dashboard/studentPages/selectedClass/SelectedClass";
 import Payment from "../layout/dashboard/studentPages/payment/Payment";
+import EnrolledClass from "../layout/dashboard/studentPages/enrolledClass/EnrolledClass";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
           {
             path: "payment/:id",
             element:<StudentRoute><Payment></Payment></StudentRoute>
+          },
+          {
+            path: "enrollclass",
+            element:<StudentRoute><EnrolledClass></EnrolledClass></StudentRoute>
           },
 
         ]

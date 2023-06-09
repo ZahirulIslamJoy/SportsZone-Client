@@ -32,7 +32,7 @@ const Dashboard = () => {
               <Link to="selectedclass" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                 <span className="ml-3">Selected Classes</span>
               </Link>
-              <Link className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+              <Link to='enrollclass' className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                 <span className="ml-3">Enrolled Classes</span>
               </Link>
             </div>
@@ -78,7 +78,7 @@ const Dashboard = () => {
                   <Link to="selectedclass" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                     <span className="ml-3">Selected Classes</span>
                   </Link>
-                  <Link className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+                  <Link to='enrollclass' className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                     <span className="ml-3">Enrolled Classes</span>
                   </Link>
                 </div>
