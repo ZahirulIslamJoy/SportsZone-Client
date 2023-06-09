@@ -6,13 +6,13 @@ import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 import useIsAdmin from "../../hooks/useIsAdmin";
 import useIsInstructor from "../../hooks/useIsInstructor";
+import useAxiosWithToken from "../../hooks/useAxiosWithToken";
 
 const ApprovedClass = () => {
-
-    const {user}=useContext(AuthContext);
-    const [isAdmin]=useIsAdmin();
-    const [isInstructors]=useIsInstructor();
-
+  const { user } = useContext(AuthContext);
+  const [isAdmin] = useIsAdmin();
+  const [isInstructors] = useIsInstructor();
+  const [axiosSecure] = useAxiosWithToken();
 
   const { data: approvedClasses, refetch } = useQuery({
     queryKey: ["/verifiedclass"],
@@ -23,26 +23,58 @@ const ApprovedClass = () => {
     },
   });
 
-  const handleCourseSubmit=(id)=>{
-    if(user == null){
-        return  Swal.fire('Please Login To Select The Course');
+  console.log(approvedClasses);
+
+  const handleCourseSubmit = (id) => {
+    if (user == null) {
+      return Swal.fire("Please Login To Select The Course");
     }
 
-  }
+    const selectedClass = approvedClasses.find(
+      (singleClass) => singleClass._id == id
+    );
+
+    const email = user?.email;
+    const className = selectedClass.className;
+    const instructor = selectedClass.instructorName;
+    const price = selectedClass.price;
+    const selectedClassInfo = {
+      email,
+      className,
+      instructor,
+      price,
+    };
+
+    axiosSecure.post(`/selectedClass`, selectedClassInfo).then((res) => {
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "This Class Is Seleced,Pay For The Enrollment",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
 
   return (
     <div className="w-[90%] mx-auto ">
       <div>
         <h1 className="text-3xl  text-center mt-12 mb-12">
-          Pick Up  Best Class Now!!!
+          Pick Up Best Class Now!!!
         </h1>
-      </div> 
+      </div>
       <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3">
         {approvedClasses?.map((singleClass) => (
           <div key={singleClass._id}>
-            <div className={`max-w-sm  border border-gray-200 rounded-lg shadow ${singleClass.seats ==0 ? "bg-red-600":"bg-white"} `}>
+            <div
+              className={`max-w-sm  border border-gray-200 rounded-lg shadow ${
+                singleClass.seats == 0 ? "bg-red-600" : "bg-white"
+              } `}
+            >
               <img
-                className="rounded-t-lg h-[300px] w-full "
+                className="rounded-t-lg h-[250px] w-full "
                 src={singleClass.image}
                 alt=""
               />
@@ -59,8 +91,11 @@ const ApprovedClass = () => {
                 <p className="mb-3 text-xl font-semibold text-gray-700">
                   Price: {singleClass.price}
                 </p>
-                <button disabled={isAdmin || isInstructors || singleClass.seats==0}
-                 onClick={()=>handleCourseSubmit(singleClass._id)} className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                <button
+                  disabled={isAdmin || isInstructors || singleClass.seats == 0}
+                  onClick={() => handleCourseSubmit(singleClass._id)}
+                  className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
+                >
                   Select Course
                 </button>
               </div>
