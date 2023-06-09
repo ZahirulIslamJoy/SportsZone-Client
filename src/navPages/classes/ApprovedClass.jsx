@@ -23,7 +23,6 @@ const ApprovedClass = () => {
     },
   });
 
-  console.log(approvedClasses);
 
   const handleCourseSubmit = (id) => {
     if (user == null) {

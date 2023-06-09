@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useAddedClass from "../../../../hooks/useAddedClass";
+import useAxiosWithToken from "../../../../hooks/useAxiosWithToken";
 
 const SelectedClass = () => {
-    const [SelectedClass]=useAddedClass();
+    const [SelectedClass,refetch]=useAddedClass();
+    const [axiosSecure] = useAxiosWithToken();
 
   const handleClassDelete = (id) => {
     // console.log(id);
