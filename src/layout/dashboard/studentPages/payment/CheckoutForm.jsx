@@ -1,11 +1,29 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./common.css";
+import Swal from "sweetalert2";
+import useAxiosWithToken from "../../../../hooks/useAxiosWithToken";
 
-const CheckoutForm = () => {
+
+const CheckoutForm = ({payAmount}) => {
   const stripe = useStripe();
   const elements = useElements();
-  const [error,setError]=useState(null);
+  const [axiosSecure]=useAxiosWithToken();
+  const price={
+    payAmount
+  }
+
+  useEffect(() => {
+    if (price != null || price !== null || price!==0 ) {
+      axiosSecure.post("/create-payment-intent", price).then((res) => {
+        console.log(res.data.clientSecret);
+        // setClientSecret(res.data.clientSecret);
+      });
+    }
+  },[]);
+
+ 
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,10 +44,14 @@ const CheckoutForm = () => {
       card,
     });
     if (error) {
-    //   setError(error.message);
-        
+    Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title:`${error.message}`,
+        showConfirmButton: false,
+        timer: 2000
+      })
     } else {
-      setError("");
       console.log("[PaymentMethod]", paymentMethod);
     }
   };
@@ -59,7 +81,6 @@ const CheckoutForm = () => {
       >
         Pay
       </button>
-      {error && <p>{error}</p>}
     </form>
   );
 };

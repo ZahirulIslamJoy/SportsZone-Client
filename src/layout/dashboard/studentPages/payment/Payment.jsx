@@ -15,7 +15,7 @@ const Payment = () => {
   const paymentClass = SelectedClass?.find(
     (singleClass) => singleClass._id == id
   );
-  const payAmount = paymentClass?.price;
+  const payAmount = parseFloat(paymentClass?.price.toFixed(2));
 
   return (
     <div>
@@ -24,8 +24,8 @@ const Payment = () => {
       </h1>
       <h1 className="text-3xl mt-12 mb-8 text-center">To Pay: ${payAmount}</h1>
       <div>
-        <Elements stripe={stripePromise}>
-          <CheckoutForm />
+        <Elements  stripe={stripePromise}>
+          <CheckoutForm  payAmount={payAmount}  />
         </Elements>
       </div>
     </div>
