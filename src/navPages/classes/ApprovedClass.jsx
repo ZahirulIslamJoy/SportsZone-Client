@@ -3,11 +3,16 @@ import axios from "axios";
 import React from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
+import Swal from "sweetalert2";
+import useIsAdmin from "../../hooks/useIsAdmin";
+import useIsInstructor from "../../hooks/useIsInstructor";
 
 const ApprovedClass = () => {
 
     const {user}=useContext(AuthContext);
-    console.log(user)
+    const [isAdmin]=useIsAdmin();
+    const [isInstructors]=useIsInstructor();
+
 
   const { data: approvedClasses, refetch } = useQuery({
     queryKey: ["/verifiedclass"],
@@ -18,7 +23,15 @@ const ApprovedClass = () => {
     },
   });
 
-  console.log(approvedClasses);
+  const handleCourseSubmit=(id)=>{
+    if(user == null){
+        return  Swal.fire('Please Login To Select The Course');
+    }
+
+  }
+
+
+
 
   return (
     <div className="w-[90%] mx-auto ">
@@ -30,7 +43,7 @@ const ApprovedClass = () => {
       <div className="grid grid-cols-3">
         {approvedClasses?.map((singleClass) => (
           <div key={singleClass._id}>
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+            <div className={`max-w-sm  border border-gray-200 rounded-lg shadow ${singleClass.seats ==0 ? "bg-red-600":"bg-white"} `}>
               <img
                 className="rounded-t-lg h-[300px] w-full "
                 src={singleClass.image}
@@ -49,7 +62,8 @@ const ApprovedClass = () => {
                 <p className="mb-3 text-xl font-semibold text-gray-700">
                   Price: {singleClass.price}
                 </p>
-                <button onClick={()=>handleCourseSubmit(singleClass._id)} className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                <button disabled={isAdmin || isInstructors || singleClass.seats==0}
+                 onClick={()=>handleCourseSubmit(singleClass._id)} className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
                   Select Course
                 </button>
               </div>
