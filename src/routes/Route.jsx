@@ -15,6 +15,8 @@ import ManageClasses from "../layout/dashboard/adminPages/ManageClasses";
 import MyClassInfoUpdate from "../layout/dashboard/instructorPages/MyClassInfoUpdate";
 import ApprovedClass from "../navPages/classes/ApprovedClass";
 import Instructors from "../navPages/instructors/Instructors";
+import StudentRoute from "./StudentRoute";
+import SelectedClass from "../layout/dashboard/studentPages/selectedClass/SelectedClass";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +69,12 @@ const router = createBrowserRouter([
             path:"update/:id",
             element:<InstructorRoute><MyClassInfoUpdate></MyClassInfoUpdate></InstructorRoute>,  
           },
+          //student
+          {
+            path: "selectedclass",
+            element:<StudentRoute><SelectedClass></SelectedClass></StudentRoute>
+          },
+
         ]
       },
     ],

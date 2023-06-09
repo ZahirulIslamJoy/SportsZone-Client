@@ -29,7 +29,7 @@ const Dashboard = () => {
           )}
           {isStudent && (
             <div>
-              <Link className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+              <Link to="selectedclass" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                 <span className="ml-3">Selected Classes</span>
               </Link>
               <Link className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
@@ -74,8 +74,8 @@ const Dashboard = () => {
                 </div>
               )}
               {isStudent && (
-                <div>
-                  <Link className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+                <div >
+                  <Link to="selectedclass" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
                     <span className="ml-3">Selected Classes</span>
                   </Link>
                   <Link className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">

@@ -4,7 +4,7 @@ import { AuthContext } from "../providers/AuthProviders";
 import { Navigate } from "react-router-dom";
 import { RiseLoader } from "react-spinners";
 
-const StudentRoute = () => {
+const StudentRoute = ({children}) => {
   const { user, loading } = useContext(AuthContext);
   const [isStudent, studentLoading] = useIsStudent();
 
