@@ -13,6 +13,7 @@ import InstructorRoute from "./InstructorRoute";
 import MyClass from "../layout/dashboard/instructorPages/MyClass";
 import ManageClasses from "../layout/dashboard/adminPages/ManageClasses";
 import MyClassInfoUpdate from "../layout/dashboard/instructorPages/MyClassInfoUpdate";
+import ApprovedClass from "../navPages/classes/ApprovedClass";
 
 const router = createBrowserRouter([
   {
@@ -32,8 +33,8 @@ const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path:"update",
-        element:<MyClassInfoUpdate></MyClassInfoUpdate>,  
+        path: "/approvedclass",
+        element:<ApprovedClass></ApprovedClass>
       },
       {
         path: "/dashboard",

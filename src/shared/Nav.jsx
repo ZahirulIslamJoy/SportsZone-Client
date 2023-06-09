@@ -46,7 +46,7 @@ const Nav = () => {
             <Link className="cursor-pointer  hover:bg-blue-600  text-white">
               Instructors
             </Link>
-            <Link className="cursor-pointer  hover:bg-blue-500  text-white">
+            <Link to='/approvedclass' className="cursor-pointer  hover:bg-blue-500  text-white">
               Classes
             </Link>
 
