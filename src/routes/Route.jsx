@@ -14,6 +14,7 @@ import MyClass from "../layout/dashboard/instructorPages/MyClass";
 import ManageClasses from "../layout/dashboard/adminPages/ManageClasses";
 import MyClassInfoUpdate from "../layout/dashboard/instructorPages/MyClassInfoUpdate";
 import ApprovedClass from "../navPages/classes/ApprovedClass";
+import Instructors from "../navPages/instructors/Instructors";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
         element:<ApprovedClass></ApprovedClass>
       },
       {
+        path: "/instructors",
+        element:<Instructors></Instructors>
+      },
+      {
         path: "/dashboard",
         element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         //admin
@@ -44,10 +49,6 @@ const router = createBrowserRouter([
           {
             path: "manageusers",
             element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>,
-          },
-          {
-            path:"update",
-            element:<MyClassInfoUpdate></MyClassInfoUpdate>,  
           },
           {
             path: "manageclasses",

@@ -45,6 +45,7 @@ const Register = () => {
       name,
       email,
       role: "student",
+      photo,
     };
 
     creatUserWithEp(data.email, data.password)
@@ -94,8 +95,9 @@ const Register = () => {
         const name =user?.displayName;
         const email=user?.email;
         const role="student";
+        const photo=user?.photoURL;
         const userInfo={
-          name,email,role
+          name,email,role,photo
         }
         fetch(`${import.meta.env.VITE_URL}/users`, {
           method: "PUT",

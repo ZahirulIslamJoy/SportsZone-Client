@@ -43,7 +43,7 @@ const Nav = () => {
             >
               <p>Home</p>
             </Link>
-            <Link className="cursor-pointer  hover:bg-blue-600  text-white">
+            <Link to="/instructors" className="cursor-pointer  hover:bg-blue-600  text-white">
               Instructors
             </Link>
             <Link to='/approvedclass' className="cursor-pointer  hover:bg-blue-500  text-white">

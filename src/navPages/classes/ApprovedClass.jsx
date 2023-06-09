@@ -30,14 +30,11 @@ const ApprovedClass = () => {
 
   }
 
-
-
-
   return (
     <div className="w-[90%] mx-auto ">
       <div>
         <h1 className="text-3xl  text-center mt-12 mb-12">
-          Pick Up Your Best Class Now!!!
+          Pick Up  Best Class Now!!!
         </h1>
       </div>
       <div className="grid grid-cols-3">
