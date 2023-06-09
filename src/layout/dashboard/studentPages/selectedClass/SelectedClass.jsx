@@ -1,53 +1,36 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
-import { AuthContext } from "../../../../providers/AuthProviders";
-import useAxiosWithToken from "../../../../hooks/useAxiosWithToken";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import useAddedClass from "../../../../hooks/useAddedClass";
 
 const SelectedClass = () => {
-  const { user, loading } = useContext(AuthContext);
-  const email = user?.email;
-  const [axiosSecure] = useAxiosWithToken();
+    const [SelectedClass]=useAddedClass();
 
-  const { data: SelectedClass, refetch } = useQuery({
-    queryKey: [`/selectedClass/${email}`],
-    enabled: !loading,
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/selectedClass/${email}`);
-      const data = res.data;
-      return data;
-    },
-  });
-  console.log(SelectedClass);
-
-  const handleClassDelete=(id)=>{
+  const handleClassDelete = (id) => {
     // console.log(id);
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        axiosSecure.delete(`/selectedClass/${id}`)
-        .then(res =>{
-            if(res.data.deletedCount>0){
-                refetch();
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Your class has been Deleted',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-            }
-        })
-       
-      })
-  }
-
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      axiosSecure.delete(`/selectedClass/${id}`).then((res) => {
+        if (res.data.deletedCount > 0) {
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your class has been Deleted",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+    });
+  };
 
   return (
     <div>
@@ -94,11 +77,16 @@ const SelectedClass = () => {
                   {classes?.price}
                 </td>
                 <td className="px-6  cursor-pointer py-4">
-                  <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
-                    Pay
-                  </button>
+                  <Link to={`/dashboard/payment/${classes?._id}`} >
+                    <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                      Pay
+                    </button>
+                  </Link>
                 </td>
-                <td onClick={()=>handleClassDelete(classes?._id)} className="px-6   cursor-pointer py-4">
+                <td
+                  onClick={() => handleClassDelete(classes?._id)}
+                  className="px-6   cursor-pointer py-4"
+                >
                   <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
                     Delete
                   </button>
