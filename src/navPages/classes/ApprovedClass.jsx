@@ -36,8 +36,8 @@ const ApprovedClass = () => {
         <h1 className="text-3xl  text-center mt-12 mb-12">
           Pick Up  Best Class Now!!!
         </h1>
-      </div>
-      <div className="grid grid-cols-3">
+      </div> 
+      <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3">
         {approvedClasses?.map((singleClass) => (
           <div key={singleClass._id}>
             <div className={`max-w-sm  border border-gray-200 rounded-lg shadow ${singleClass.seats ==0 ? "bg-red-600":"bg-white"} `}>
