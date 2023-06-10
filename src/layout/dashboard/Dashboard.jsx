@@ -12,11 +12,16 @@ const Dashboard = () => {
   return (
     <div>
       <div className="h-full lg:hidden px-6  overflow-y-auto bg-[#1e2a4a] ">
-        <h1 className="text-2xl mt-4 mb-4 underline text-gray-200">Dashboard Menus</h1>
+        <h1 className="text-2xl mt-4 mb-4 underline text-gray-200">
+          Dashboard Menus
+        </h1>
         <div className=" font-medium">
           {isAdmin && (
             <div>
-              <Link to="manageclasses" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+              <Link
+                to="manageclasses"
+                className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500"
+              >
                 <span className="ml-3">Manage Classes</span>
               </Link>
               <Link
@@ -29,20 +34,38 @@ const Dashboard = () => {
           )}
           {isStudent && (
             <div>
-              <Link to="selectedclass" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+              <Link
+                to="selectedclass"
+                className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500"
+              >
                 <span className="ml-3">Selected Classes</span>
               </Link>
-              <Link to='enrollclass' className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+              <Link
+                to="enrollclass"
+                className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500"
+              >
                 <span className="ml-3">Enrolled Classes</span>
+              </Link>
+              <Link
+                to="paymenthistory"
+                className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500"
+              >
+                <span className="ml-3">Payment History</span>
               </Link>
             </div>
           )}
           {isInstructor && (
             <div>
-              <Link to="addclass" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+              <Link
+                to="addclass"
+                className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500"
+              >
                 <span className="ml-3">Add Class</span>
               </Link>
-              <Link to="myclass" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+              <Link
+                to="myclass"
+                className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500"
+              >
                 <span className="ml-3">My Classes</span>
               </Link>
             </div>
@@ -62,7 +85,10 @@ const Dashboard = () => {
               </Link>
               {isAdmin && (
                 <div>
-                  <Link to="manageclasses" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+                  <Link
+                    to="manageclasses"
+                    className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500"
+                  >
                     <span className="ml-3">Manage Classes</span>
                   </Link>
                   <Link
@@ -74,21 +100,39 @@ const Dashboard = () => {
                 </div>
               )}
               {isStudent && (
-                <div >
-                  <Link to="selectedclass" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+                <div>
+                  <Link
+                    to="selectedclass"
+                    className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500"
+                  >
                     <span className="ml-3">Selected Classes</span>
                   </Link>
-                  <Link to='enrollclass' className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+                  <Link
+                    to="enrollclass"
+                    className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500"
+                  >
                     <span className="ml-3">Enrolled Classes</span>
+                  </Link>
+                  <Link
+                    to="paymenthistory"
+                    className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500"
+                  >
+                    <span className="ml-3">Payment History</span>
                   </Link>
                 </div>
               )}
               {isInstructor && (
-                <div> 
-                  <Link to="addclass" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+                <div>
+                  <Link
+                    to="addclass"
+                    className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500"
+                  >
                     <span className="ml-3">Add Class</span>
                   </Link>
-                  <Link to="myclass" className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500">
+                  <Link
+                    to="myclass"
+                    className="flex items-center p-2 rounded-lg text-white hover:bg-gray-500"
+                  >
                     <span className="ml-3">My Classes</span>
                   </Link>
                 </div>
