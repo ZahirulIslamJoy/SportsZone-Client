@@ -17,14 +17,15 @@ const Nav = () => {
   };
 
   return (
-    <div className="bg-[#1D2A35]">
+    <div className={ `${theme?"bg-[#1D2A35] text-white":"bg-white text-black"}`
+    }>
       <div >
-        <Navbar  className="w-[85%]  bg mx-auto " fluid>
+        <Navbar  className={`w-[85%]  mx-auto  ${theme?" bg":"bg-white"} `} fluid>
           <Navbar.Brand>
-            <span className="self-center text-white whitespace-nowrap  lg:text-2xl text-sm font-semibold">
+            <span className={`self-center ${theme?"text-white":"text-black"}  whitespace-nowrap  lg:text-2xl text-sm font-semibold`}>
               Play Zone
               <span>
-                <img className="h-10    w-10 inline-flex" src={logo} alt="" />
+                <img className="h-10  w-10 inline-flex" src={logo} alt="" />
               </span>
               Pro
             </span>
@@ -37,20 +38,26 @@ const Nav = () => {
                 alt=""
               />
             )}
-             <BsFillMoonFill onClick={()=>toggleTheme(!theme)} className=" mt-4 lg:mt-0  lg:ml-4" size={25}  color="white"  ></BsFillMoonFill>
+             {
+              theme?<span>
+                <BsFillMoonFill onClick={()=>toggleTheme(!theme)} className=" mt-4 lg:mt-0  lg:ml-4" size={25}  color="white"  ></BsFillMoonFill>
+              </span>
+              :
+              <BsFillMoonFill onClick={()=>toggleTheme(!theme)} className=" mt-4 lg:mt-0  lg:ml-4" size={25}  color="black"  ></BsFillMoonFill>
+             }
             <Navbar.Toggle />
           </div>
           <Navbar.Collapse>
             <Link
-              className="cursor-pointer  hover:bg-blue-600 text-white"
+              className="cursor-pointer  hover:bg-blue-600"
               to="/"
             >
               <p>Home</p>
             </Link>
-            <Link to="/instructors" className="cursor-pointer  hover:bg-blue-600  text-white">
+            <Link to="/instructors" className="cursor-pointer  hover:bg-blue-600">
               Instructors
             </Link>
-            <Link to='/approvedclass' className="cursor-pointer  hover:bg-blue-500  text-white">
+            <Link to='/approvedclass' className="cursor-pointer  hover:bg-blue-500">
               Classes
             </Link>
 
@@ -58,13 +65,13 @@ const Nav = () => {
               <span className="flex flex-col lg:flex-row lg:gap-5 ">
                 <Link
                   to="/dashboard"
-                  className="cursor-pointer  hover:bg-blue-500  text-white"
+                  className="cursor-pointer  hover:bg-blue-500"
                 >
                   Dashboard
                 </Link>
                 <Link
                   onClick={handleLogOut}
-                  className="cursor-pointer  hover:bg-blue-500  text-white"
+                  className="cursor-pointer  hover:bg-blue-500"
                 >
                   LogOut
                 </Link>
@@ -72,7 +79,7 @@ const Nav = () => {
             ) : (
               <Link
                 to="/login"
-                className="cursor-pointer  hover:bg-blue-500  text-white"
+                className="cursor-pointer  hover:bg-blue-500"
               >
                 Login
               </Link>
