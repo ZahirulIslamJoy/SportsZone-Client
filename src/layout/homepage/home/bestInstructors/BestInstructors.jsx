@@ -1,9 +1,12 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
+import { ThemeContext } from "../../../../providers/ThemeProviders";
 
 const BestInstructors = () => {
   const [popularInstructors, setPopularInstructors] = useState([]);
+
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_URL}/instructors`).then((res) => {
@@ -14,9 +17,13 @@ const BestInstructors = () => {
   console.log(popularInstructors);
 
   return (
-    <div className="bg-[#282A35] pb-32 ">
+    <div
+      className={`${
+        theme ? "bg-[#282A35] text-gray-200" : "bg-white text-black"
+      } pb-32`}
+    >
       <div className="w-[85%] mx-auto ">
-        <h1 className="text-3xl text-white pt-16 mb-20 text-center">
+        <h1 className="text-3xl  pt-16 mb-20 text-center">
           Our Popular Instructors
         </h1>
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
