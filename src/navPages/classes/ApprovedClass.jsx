@@ -34,6 +34,7 @@ const ApprovedClass = () => {
     );
 
     const email = user?.email;
+    const classImage=selectedClass?.image;
     const className = selectedClass.className;
     const instructor = selectedClass.instructorName;
     const price = selectedClass.price;
@@ -44,6 +45,7 @@ const ApprovedClass = () => {
       className,
       instructor,
       price,
+      classImage,
     };
 
     axiosSecure.post(`/selectedClass`, selectedClassInfo).then((res) => {

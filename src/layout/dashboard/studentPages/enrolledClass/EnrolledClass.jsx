@@ -34,6 +34,9 @@ const EnrolledClass = () => {
               <th scope="col" className="px-1 py-3">
                 Class Name
               </th>
+              <th scope="col" className="px-1 py-3">
+                Class Image
+              </th>
               <th scope="col" className="px-6 ml-6 py-3">
                 Instructor
               </th>
@@ -50,6 +53,9 @@ const EnrolledClass = () => {
               >
                 <td className="px-6 py-4">{index + 1}</td>
                 <td className="px-6  py-4">{classes?.className}</td>
+                <td className="px-6   py-4">
+                    <img className="h-10 w-10 rounded-full" src={classes?.classImage} alt="" />
+                </td>
                 <td className="px-6  py-4">{classes?.instructor}</td>
                 <td
                   scope="row"

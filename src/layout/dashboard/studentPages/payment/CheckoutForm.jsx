@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../providers/AuthProviders";
 import { useNavigate } from "react-router-dom";
 
-const CheckoutForm = ({ payAmount,paymentClass,refetch }) => {
+const CheckoutForm = ({ payAmount,paymentClass }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
@@ -18,7 +18,7 @@ const CheckoutForm = ({ payAmount,paymentClass,refetch }) => {
     payAmount,
   };
   const navigate=useNavigate();
-
+  console.log(paymentClass);
   useEffect(() => {
     if (price != null && price !== undefined && price !== 0) {
       axiosSecure.post("/create-payment-intent", price).then((res) => {
@@ -84,7 +84,8 @@ const CheckoutForm = ({ payAmount,paymentClass,refetch }) => {
         selectedclassId:paymentClass?._id,
         classId:paymentClass.classId,
         className:paymentClass?.className,
-        instructor:paymentClass?.instructor          
+        instructor:paymentClass?.instructor,
+        classImage:paymentClass?.classImage         
       };
     //   console.log(paymentInfo);
       axiosSecure.post(`/payments`,paymentInfo)
