@@ -1,12 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "~react-image-gallery/styles/css/image-gallery.css";
 
 
 
 .bg{
-    background-color: #1e2a4b!important;
+    background-color: #1D2A35!important;
 }
 
 .text-col{

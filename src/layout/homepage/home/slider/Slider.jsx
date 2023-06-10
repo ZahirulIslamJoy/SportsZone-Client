@@ -13,8 +13,8 @@ import { Link } from "react-router-dom";
 
 const Slider = () => {
   return (
-    <div>
-      <Carousel infiniteLoop={true}>
+    <div className="">
+      <Carousel interval={2000}  autoPlay={true} infiniteLoop={true}>
         <div>
           <img src={bgtest4} />
           <div className=" -mt-28  lg:-mt-96">
