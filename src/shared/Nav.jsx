@@ -39,7 +39,7 @@ const Nav = () => {
             )}
              {
               theme?<span>
-                <BsFillMoonFill onClick={()=>toggleTheme(!theme)} className=" mt-4 lg:mt-0  lg:ml-4" size={25}  color="white"  ></BsFillMoonFill>
+                <BsFillMoonFill onClick={()=>toggleTheme(!theme)} className=" mt-4 lg:mt-1  lg:ml-4" size={25}  color="white"  ></BsFillMoonFill>
               </span>
               :
               <BsFillMoonFill onClick={()=>toggleTheme(!theme)} className=" mt-4 lg:mt-0  lg:ml-4" size={25}  color="black"  ></BsFillMoonFill>

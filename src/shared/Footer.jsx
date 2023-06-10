@@ -1,9 +1,14 @@
 import React from "react";
 import logo from "../../src/assets/images/logo.png";
-
+import { useContext } from "react";
+import { ThemeContext } from "../providers/ThemeProviders";
 const Footer = () => {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className="bg-[#1D2A35] pt-16 ">
+    <div
+      className={`${theme ? "bg-[#1D2A35] text-white" : "bg-white text-black"} pt-16 `}
+    >
       <footer className="w-[85%] mx-auto">
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">
@@ -15,7 +20,7 @@ const Footer = () => {
             </div>
             <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
-                <h2 className="mb-6 text-sm font-semibold text-black uppercase ">
+                <h2 className="mb-6 text-sm font-semibold uppercase ">
                   Our Avaliable Camps
                 </h2>
                 <ul className="text-gray-600 dark:text-gray-400 font-medium">
@@ -25,7 +30,7 @@ const Footer = () => {
                 </ul>
               </div>
               <div>
-                <h2 className="mb-6 text-sm font-semibold text-black uppercase ">
+                <h2 className="mb-6 text-sm font-semibold uppercase ">
                   Address
                 </h2>
                 <ul className="text-gray-600 dark:text-gray-400 font-medium">
@@ -34,7 +39,7 @@ const Footer = () => {
                 </ul>
               </div>
               <div>
-                <h2 className="mb-6 text-sm font-semibold text-black  uppercase dark:text-white">
+                <h2 className="mb-6 text-sm font-semibold   uppercase dark:text-white">
                   Legal
                 </h2>
                 <ul className="text-gray-600 dark:text-gray-400 font-medium">
@@ -44,7 +49,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+          <hr className="my-6 border-gray-200 sm:mx-auto  lg:my-8" />
           <div className="sm:flex sm:items-center sm:justify-between">
             <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
               © 2023 PlayZone PRO™ . All Rights Reserved.
