@@ -20,11 +20,13 @@ import SelectedClass from "../layout/dashboard/studentPages/selectedClass/Select
 import Payment from "../layout/dashboard/studentPages/payment/Payment";
 import EnrolledClass from "../layout/dashboard/studentPages/enrolledClass/EnrolledClass";
 import PaymentHistory from "../layout/dashboard/studentPages/paymenthistory/PaymentHistory";
+import Error from "../errorPage/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement:<Error></Error>,
     children: [
       {
         path: "/",
