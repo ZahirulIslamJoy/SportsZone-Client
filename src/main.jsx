@@ -12,15 +12,17 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { initFlowbite } from "flowbite";
+import ThemeProviders from "./providers/ThemeProviders";
 const queryClient = new QueryClient();
-
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProviders>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
-    </AuthProviders>
+    <ThemeProviders>
+      <AuthProviders>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+      </AuthProviders>
+    </ThemeProviders>
   </React.StrictMode>
 );

@@ -3,8 +3,12 @@ import React, { useContext, useEffect } from "react";
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
+import { ThemeContext } from "../providers/ThemeProviders";
+import { BsFillMoonFill } from 'react-icons/bs';
 const Nav = () => {
   const { user, handeleSignOut } = useContext(AuthContext);
+  const {theme,toggleTheme}=useContext(ThemeContext);
+  console.log(theme)
 
      
   const handleLogOut = () => {
@@ -15,9 +19,9 @@ const Nav = () => {
   return (
     <div className="bg-[#1D2A35]">
       <div >
-        <Navbar  className="w-[80%]  bg mx-auto " fluid>
+        <Navbar  className="w-[85%]  bg mx-auto " fluid>
           <Navbar.Brand>
-            <span className="self-center text-white whitespace-nowrap  lg:text-2xl text-lg font-semibold">
+            <span className="self-center text-white whitespace-nowrap  lg:text-2xl text-sm font-semibold">
               Play Zone
               <span>
                 <img className="h-10    w-10 inline-flex" src={logo} alt="" />
@@ -28,11 +32,12 @@ const Nav = () => {
           <div className="flex gap-4 md:order-2">
             {user && (
               <img
-                className="h-8 w-8 ml-12 rounded-full"
+                className=" h-6 w-6 mt-4 lg:mt-0 lg:h-8 lg:w-8 lg:ml-12 rounded-full"
                 src={user?.photoURL}
                 alt=""
               />
             )}
+             <BsFillMoonFill onClick={()=>toggleTheme(!theme)} className=" mt-4 lg:mt-0  lg:ml-4" size={25}  color="white"  ></BsFillMoonFill>
             <Navbar.Toggle />
           </div>
           <Navbar.Collapse>
