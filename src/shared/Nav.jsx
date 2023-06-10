@@ -3,7 +3,6 @@ import React, { useContext, useEffect } from "react";
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
-import { initFlowbite } from "flowbite";
 const Nav = () => {
   const { user, handeleSignOut } = useContext(AuthContext);
 
@@ -21,7 +20,7 @@ const Nav = () => {
             <span className="self-center text-white whitespace-nowrap  lg:text-2xl text-lg font-semibold">
               Play Zone
               <span>
-                <img className="h-10 w-10 inline-flex" src={logo} alt="" />
+                <img className="h-10    w-10 inline-flex" src={logo} alt="" />
               </span>
               Pro
             </span>

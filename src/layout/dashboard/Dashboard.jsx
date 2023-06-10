@@ -141,7 +141,7 @@ const Dashboard = () => {
           </div>
         </aside>
         <div>
-          <div className="p-4 sm:ml-40">
+          <div className="p-4 sm:ml-32 lg:ml-64">
             <Outlet></Outlet>
           </div>
         </div>
