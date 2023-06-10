@@ -8,7 +8,6 @@ import { BsFillMoonFill } from 'react-icons/bs';
 const Nav = () => {
   const { user, handeleSignOut } = useContext(AuthContext);
   const {theme,toggleTheme}=useContext(ThemeContext);
-  console.log(theme)
 
      
   const handleLogOut = () => {

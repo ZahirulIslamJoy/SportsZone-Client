@@ -12,11 +12,12 @@ import { Link } from "react-router-dom";
 
 
 const Slider = () => {
+
   return (
     <div className="">
       <Carousel interval={2000}  autoPlay={true} infiniteLoop={true}>
         <div>
-          <img src={bgtest4} />
+          <img  src={bgtest4} />
           <div className=" -mt-28  lg:-mt-96">
             <h1 className=" text-xl   lg:text-4xl text-black">
               SUMMER CAMPS KICK OFF June 28TH!
@@ -47,7 +48,7 @@ const Slider = () => {
           </div>
         </div>
         <div>
-          <img src={bgtest5} />
+          <img   src={bgtest5} />
           <div className=" -mt-28  lg:-mt-96">
             <h1 className=" text-xl   lg:text-4xl text-white">
               SUMMER CAMPS KICK OFF June 28TH!
@@ -78,7 +79,7 @@ const Slider = () => {
           </div>
         </div>
         <div>
-          <img src={bgtest1} />
+          <img   src={bgtest1} />
           <div className=" -mt-28  lg:-mt-96">
             <h1 className=" text-xl   lg:text-4xl text-black">
               SUMMER CAMPS KICK OFF June 28TH!
@@ -109,7 +110,7 @@ const Slider = () => {
           </div>
         </div>
         <div>
-          <img src={bgtest6} />
+          <img   src={bgtest6} />
           <div className=" -mt-28  lg:-mt-96">
             <h1 className=" text-xl   lg:text-4xl text-black">
               SUMMER CAMPS KICK OFF June 28TH!

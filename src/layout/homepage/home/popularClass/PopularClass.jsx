@@ -1,26 +1,32 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../../../../providers/ThemeProviders";
 
 const PopularClass = () => {
   const [popularClass, setPopularClass] = useState([]);
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_URL}/popularclass`).then((res) => {
       setPopularClass(res.data);
     });
   }, []);
+  //
 
   return (
-    <div className="bg-[#282A35] ">
+    <div
+      className={`${theme ? "bg-[#282A35] text-gray-200" : "bg-white text-black"}`}
+    >
       <div className="w-[85%] mx-auto ">
-        <h1 className="text-3xl text-gray-200 text-center pt-16 mb-20">
+        <h1 className="text-3xl  text-center pt-16 mb-20">
           Our Popular Classes
         </h1>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {popularClass?.map((singleClass) => (
             <div
               key={singleClass?._id}
-              className="max-w-sm mb-8 bg-[#F3ECEA] rounded-lg shadow"
+              className={`${theme ? "bg-[#F3ECEA] text-black" : "bg-gray-100 text-black"}  max-w-sm mb-8  rounded-lg shadow `}
             >
               <img
                 className="rounded-t-lg  h-[250px] w-full "
