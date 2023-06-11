@@ -10,6 +10,7 @@ import useAxiosWithToken from "../../hooks/useAxiosWithToken";
 import { Fade } from "react-awesome-reveal";
 import useAddedClass from "../../hooks/useAddedClass";
 import useIsStudent from "../../hooks/useIsStudent";
+import useEnrolledClass from "../../hooks/useEnrolledClass";
 
 const ApprovedClass = () => {
   const { user } = useContext(AuthContext);
@@ -28,6 +29,9 @@ const ApprovedClass = () => {
   });
   
   const [SelectedClass,classRefetch]=useAddedClass();
+  console.log(SelectedClass)
+  const [enrolledClass]=useEnrolledClass();
+  console.log(enrolledClass)
 
   const handleCourseSubmit = (id) => {
     if (user == null) {
@@ -107,14 +111,14 @@ const ApprovedClass = () => {
                     </p>
                     <button
                       disabled={
-                        SelectedClass?.some(obj => obj.classId === singleClass._id) ||
+                        SelectedClass?.some(obj => obj.classId === singleClass._id) || enrolledClass?.some(obj => obj.classId == singleClass._id) ||
                         isAdmin || isInstructors || singleClass.seats == 0
                       }
                       onClick={() => handleCourseSubmit(singleClass._id)}
                       className="bg-[#426cde]  rounded-lg text-black disabled:cursor-not-allowed disabled:bg-slate-300 "
                     >
                       {
-                        SelectedClass?.some(obj => obj.classId === singleClass._id) ?"Already Applied":"Select Course"
+                        SelectedClass?.some(obj => obj.classId === singleClass._id) || enrolledClass?.some(obj => obj.classId == singleClass._id) ?"Already Applied":"Select Course"
                       }
                     </button>
                   </Fade>
