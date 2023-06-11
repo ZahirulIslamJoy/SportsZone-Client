@@ -31,19 +31,19 @@ const Dashboard = () => {
       <div className="flex  min-h-screen flex-col md:flex-row h-full">
         {/* Sidebar */}
         <aside
-          className={`bg-gray-100 text-gray-400 w-36 lg:w-52 flex-shrink-0 overflow-x-hidden  ${
+          className={` text-gray-400 w-36 lg:w-52 flex-shrink-0 overflow-x-hidden  ${
             isMenuOpen ? "block" : "hidden"
           } md:block`}
         >
-          <div className="flex items-center justify-center h-10 bg-white">
+          <div className="flex  items-center justify-center h-10">
             <Marquee>
-              <span className="text-white text-sm font-semibold">
+              <span className="text-black text-sm font-semibold">
                 {user?.displayName}
               </span>
             </Marquee>
           </div>
-          <nav className="mt-8">
-            <a className="flex items-center mt-4 py-2 px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+          <nav className="mt-8 border ml-8  bg-white">
+            <a className="flex items-center text-black mt-4 py-2 px-6">
               <svg
                 className="h-5 w-5"
                 fill="none"
@@ -57,60 +57,72 @@ const Dashboard = () => {
                   d="M4 6h16M4 12h16m-7 6h7"
                 ></path>
               </svg>
+              <Link to="/dashboard">
               <span className="mx-4">Dashboard</span>
+              </Link>
             </a>
             {isStudent && (
               <span>
                 <Link to='selectedclass'>
-                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                <hr className="border" />
+                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-black ">
                     <BiSelectMultiple size={30} ></BiSelectMultiple>
                     <span className="mx-4">Selected Classes</span>
                   </span>
+                  <hr className="border" />
                 </Link>
                 <Link to='enrollclass'>
-                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6  text-black ">
                     <GiConfirmed size={30} ></GiConfirmed>
                     <span className="mx-4">Enrolled Classes</span>
                   </span>
+                  <hr className="border" />
                 </Link>
                 <Link to='paymenthistory'>
-                  <span className=" flex items-center mt-4 py-2 px-2 lg:px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                  <span className=" flex  items-center mt-4 py-2 px-2 lg:px-6 text-black">
                     <FaCommentDollar size={30} ></FaCommentDollar>
                     <span className="mx-4">Payment History</span>
                   </span>
                 </Link>
+                <hr className="border" />
               </span>
             )}
             {isInstructor && (
               <span>
                 <Link to='addclass'>
-                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                <hr className="border" />
+                  <span className="flex text-black items-center mt-4 py-2 px-2 lg:px-6 ">
                     <AiFillFileAdd size={30} ></AiFillFileAdd>
                     <span className="mx-4">Add Class</span>
                   </span>
                 </Link>
+                <hr className="border" />
                 <Link to='myclass'>
-                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                  <span className="flex text-black  items-center mt-4 py-2 px-2 lg:px-6 ">
                     <FaAtom></FaAtom>
                     <span className="mx-4">My Class</span>
                   </span>
                 </Link>
+                <hr className="border" />
               </span>
             )}
              {isAdmin && (
               <span>
                 <Link to='manageclasses'>
-                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                <hr className="border" />
+                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-black">
                     <BiBookContent></BiBookContent>
                     <span className="mx-4">Manage Class</span>
                   </span>
                 </Link>
+                <hr className="border" />
                 <Link to='manageusers'>
-                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-black">
                     <FaUserAlt></FaUserAlt>
                     <span className="mx-4">Manage Users</span>
                   </span>
                 </Link>
+                <hr className="border" />
               </span>
             )}
           </nav>

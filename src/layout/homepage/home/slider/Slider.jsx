@@ -15,10 +15,10 @@ const Sliders = () => {
 
     <div>
       <AwesomeSlider>
-        <div data-src={bgtest4}>
+        <div data-src={bgtest6}>
           <div className="absolute lg:bottom-60 right-10 lg:right-40 bottom-10">
             <h1 className=" text-xl   lg:text-4xl text-black">
-              SUMMER CAMPS KICK OFF June 28TH!
+              SUMMER CAMPS KICK OFF <span className="text-red-600">June 28TH!</span>
             </h1>
             <div className="flex gap-2 justify-center">
               <div className="flex items-center  justify-center">
@@ -45,10 +45,10 @@ const Sliders = () => {
             </div>
           </div>
         </div>
-        <div data-src={bgtest6}>
+        <div data-src={bgtest4}>
           <div className="absolute lg:bottom-60 right-10 lg:right-40 bottom-10">
             <h1 className=" text-xl   lg:text-4xl text-black">
-              SUMMER CAMPS KICK OFF June 28TH!
+              SUMMER CAMPS KICK OFF <span className="text-red-600">June 28TH!</span>
             </h1>
             <div className="flex gap-2 justify-center">
               <div className="flex items-center  justify-center">
@@ -77,8 +77,8 @@ const Sliders = () => {
         </div>
         <div data-src={bgtest5}>
           <div className="absolute lg:bottom-60 right-10 lg:right-40 bottom-10">
-            <h1 className=" text-xl   lg:text-4xl text-black">
-              SUMMER CAMPS KICK OFF June 28TH!
+            <h1 className=" text-xl   lg:text-4xl text-white">
+              SUMMER CAMPS KICK <span className="text-red-600">June 28TH!</span>
             </h1>
             <div className="flex gap-2 justify-center">
               <div className="flex items-center  justify-center">
@@ -107,8 +107,8 @@ const Sliders = () => {
         </div>
         <div data-src={bgtest1}>
           <div className="absolute lg:bottom-60 right-10 lg:right-40 bottom-10">
-            <h1 className=" text-xl   lg:text-4xl text-black">
-              SUMMER CAMPS KICK OFF June 28TH!
+            <h1 className=" text-xl   lg:text-4xl text-blue-600">
+              SUMMER CAMPS KICK OFF <span className="text-red-600">June 28TH!</span>
             </h1>
             <div className="flex gap-2 justify-center">
               <div className="flex items-center  justify-center">

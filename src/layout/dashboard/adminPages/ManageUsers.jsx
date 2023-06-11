@@ -70,10 +70,10 @@ const ManageUsers = () => {
   return (
     <div>
       <div>
-        <h1 className="text-center mb-20">Manage All Users</h1>
+        <h1 className="text-center text-3xl mt-12 mb-20">Manage All Users</h1>
       </div>
       <div>
-        <div className="relative overflow-x-auto">
+        <div className="relative mb-20 overflow-x-auto">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
@@ -116,7 +116,7 @@ const ManageUsers = () => {
                     <button
                      disabled={user?.role == "instructor"}
                       onClick={() => handleMakeInstructors(user?._id)}
-                      className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
+                      className="bg-[#1e2a4b] disabled:cursor-not-allowed rounded-lg text-white  disabled:bg-slate-300 "
                     >
                       Make Instructors
                     </button>
@@ -125,7 +125,7 @@ const ManageUsers = () => {
                     <button
                     disabled={user?.role == "admin"}
                       onClick={() => handleMakeAdmin(user?._id)}
-                      className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
+                      className="bg-[#1e2a4b] disabled:cursor-not-allowed rounded-lg text-white  disabled:bg-slate-300 "
                     >
                       Make Admin
                     </button>

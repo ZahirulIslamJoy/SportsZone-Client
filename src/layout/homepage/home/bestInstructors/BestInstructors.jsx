@@ -2,6 +2,10 @@ import axios from "axios";
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { ThemeContext } from "../../../../providers/ThemeProviders";
+import Marquee from "react-fast-marquee";
+import { BsFillHeartFill } from 'react-icons/bs';
+import { GrLike } from 'react-icons/gr';
+import Swal from "sweetalert2";
 
 const BestInstructors = () => {
   const [popularInstructors, setPopularInstructors] = useState([]);
@@ -15,6 +19,14 @@ const BestInstructors = () => {
   }, []);
 
   console.log(popularInstructors);
+
+  const handleLike=()=>{
+      Swal.fire("You Like The Instructor")
+  }
+
+  const handleLove=()=>{
+    Swal.fire("You Loved The Instructor")
+}
 
   return (
     <div
@@ -30,16 +42,22 @@ const BestInstructors = () => {
           {popularInstructors.map((singleInstructor) => (
             <div
               key={singleInstructor?._id}
-              className="relative transition duration-200 transform hover:-translate-y-4 mt-6 lg:mt-8"
+              className="relative transition duration-200 transform hover:translate-x-3 mt-6 lg:mt-8"
             >
               <img
-                className="object-fill h-[350px] w-full"
+                className="object-fill rounded-lg h-[350px] w-full"
                 src={singleInstructor.photo}
                 alt=""
               />
               <div className="absolute flex justify-center flex-col p-4 text-white  hover:opacity-100 opacity-0 bg-black bg-opacity-75 inset-0">
+                <Marquee>
                 <p className="mb-2">Name:{singleInstructor?.name}</p>
-                <p className="mb-2">Email:{singleInstructor?.email}</p>
+                </Marquee>
+                <p className="mb-4">Email: {singleInstructor?.email}</p>
+                <div className="flex items-center gap-4">
+                  <BsFillHeartFill onClick={handleLove} size={30} color="red" ></BsFillHeartFill>
+                  <GrLike onClick={handleLike} size={25} ></GrLike>
+                </div>
               </div>
             </div>
           ))}
