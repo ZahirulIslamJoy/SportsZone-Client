@@ -48,15 +48,15 @@ const Nav = () => {
           </div>
           <Navbar.Collapse>
             <Link
-              className="cursor-pointer  hover:bg-blue-600"
+              className="cursor-pointer hover:bg-blue-700  hover:px-2 hover:rounded-full"
               to="/"
             >
               <p>Home</p>
             </Link>
-            <Link to="/instructors" className="cursor-pointer  hover:bg-blue-600">
+            <Link to="/instructors" className="cursor-pointer   hover:bg-blue-700  hover:rounded-full hover:px-2  ">
               Instructors
             </Link>
-            <Link to='/approvedclass' className="cursor-pointer  hover:bg-blue-500">
+            <Link to='/approvedclass' className="cursor-pointer  hover:bg-blue-700  hover:rounded-full hover:px-2">
               Classes
             </Link>
 
@@ -64,13 +64,13 @@ const Nav = () => {
               <span className="flex flex-col lg:flex-row lg:gap-5 ">
                 <Link
                   to="/dashboard"
-                  className="cursor-pointer  hover:bg-blue-500"
+                  className="hover:bg-blue-700  hover:rounded-full hover:px-2"
                 >
                   Dashboard
                 </Link>
                 <Link
                   onClick={handleLogOut}
-                  className="cursor-pointer  hover:bg-blue-500"
+                  className="hover:bg-blue-700  hover:rounded-full hover:px-2"
                 >
                   LogOut
                 </Link>
@@ -78,7 +78,7 @@ const Nav = () => {
             ) : (
               <Link
                 to="/login"
-                className="cursor-pointer  hover:bg-blue-500"
+                className="hover:bg-blue-700  hover:rounded-full hover:px-2"
               >
                 Login
               </Link>
