@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Marquee from "react-fast-marquee";
+import { ThemeContext } from "../../../../providers/ThemeProviders";
 
 const Activities = () => {
+
+    const {theme}=useContext(ThemeContext);
+    console.log(theme)
+
+
   return (
-    <div className="bg-[#282A35] pt-8 text-white">   
+    <div className={ `${theme?"bg-[#1D2A35] text-white":"bg-white text-black pt-8"}`
+}>   
       <div className="w-[85%] mx-auto ">
       <h1 className="text-3xl mb-24 text-center">Upcoming Activities</h1>
         <Marquee>
