@@ -79,22 +79,22 @@ const Dashboard = () => {
       <div>
         <aside
           id="default-sidebar"
-          className=" lg:top-[67px] left-0 z-40 overflow-y-auto transition-transform -translate-x-full sm:translate-x-0"
+          className=" fixed  lg:top-[67px] left-0 z-40 overflow-y-auto transition-transform -translate-x-full sm:translate-x-0"
           aria-label="Sidebar"
         >
-          <div className="h-full px-3 py-4 overflow-y-auto  bg-[#64BCAC] ">
+          <div className=" bg-gray-300  h-full px-3 py-4 overflow-y-auto text-black  ">
             <div className="space-y-2 font-medium">
               {isAdmin && (
                 <div>
                   <Link
                     to="manageclasses"
-                    className="flex items-center p-2 rounded-lg text-white "
+                    className="flex items-center p-2 rounded-lg text-black "
                   >
                     <span className="ml-3">Manage Classes</span>
                   </Link>
                   <Link
                     to="manageusers"
-                    className="flex items-center p-2 rounded-lg text-white "
+                    className="flex items-center p-2 rounded-lg text-black "
                   >
                     <span className="ml-3">Manage Users</span>
                   </Link>
@@ -104,19 +104,19 @@ const Dashboard = () => {
                 <div>
                   <Link
                     to="selectedclass"
-                    className="flex items-center p-2 rounded-lg text-white "
+                    className="flex items-center p-2 rounded-lg text-black "
                   >
                     <span className="ml-3">Selected Classes</span>
                   </Link>
                   <Link
                     to="enrollclass"
-                    className="flex items-center p-2 rounded-lg text-white "
+                    className="flex items-center p-2 rounded-lg text-black "
                   >
                     <span className="ml-3">Enrolled Classes</span>
                   </Link>
                   <Link
                     to="paymenthistory"
-                    className="flex items-center p-2 rounded-lg text-white "
+                    className="flex items-center p-2 rounded-lg text-black "
                   >
                     <span className="ml-3">Payment History</span>
                   </Link>
