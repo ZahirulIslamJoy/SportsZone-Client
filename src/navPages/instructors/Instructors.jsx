@@ -17,8 +17,8 @@ const Instructors = () => {
 
   return (
     <div className="bg-[#282a35]" >
-      <div className="w-[85%]  mx-auto">
-        <h1 className="text-3xl text-white pt-12 mb-16 text-center">
+      <div className="w-[85%] pb-16  mx-auto">
+        <h1 className="text-3xl text-white pt-20 mb-20 text-center">
           Meet With our Instructors
         </h1>
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

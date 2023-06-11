@@ -78,7 +78,7 @@ const ApprovedClass = () => {
     <div className="bg-[#282a35]">
       <div className="w-[85%] mx-auto ">
         <div>
-          <h1 className="text-3xl  text-white text-center pt-12 mb-20">
+          <h1 className="text-3xl  text-white text-center pt-16 mb-20">
             Pick Up Best Class Now!!!
           </h1>
         </div>
@@ -91,7 +91,7 @@ const ApprovedClass = () => {
                 } `}
               >
                 <img
-                  className="rounded-t-lg h-[250px] w-full "
+                  className="rounded-t-lg h-[200px]  w-full "
                   src={singleClass.image}
                   alt=""
                 />
