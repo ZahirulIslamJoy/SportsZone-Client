@@ -1,26 +1,9 @@
 import React from "react";
-import { useContext } from "react";
-import { AuthContext } from "../../../../providers/AuthProviders";
-import useAxiosWithToken from "../../../../hooks/useAxiosWithToken";
-import { useQuery } from "@tanstack/react-query";
+import useEnrolledClass from "../../../../hooks/useEnrolledClass";
 
 const EnrolledClass = () => {
-  const { user, loading } = useContext(AuthContext);
-  const email = user?.email;
-  const [axiosSecure] = useAxiosWithToken();
-
-  const { data: enrolledClass } = useQuery({
-    queryKey: [`/payment/${email}`],
-    enabled: !loading,
-    queryFn: async () => {
-      const res = await axiosSecure.get(`payment/${email}`);
-      const data = res.data;
-      return data;
-    },
-  });
-
+ const [enrolledClass]=useEnrolledClass();
   console.log(enrolledClass);
-
   return (
     <div>
       <h1 className="text-3xl mt-12 mb-12 text-center">Your Enrolled Class</h1>

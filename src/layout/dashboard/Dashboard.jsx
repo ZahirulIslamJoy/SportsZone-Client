@@ -31,11 +31,11 @@ const Dashboard = () => {
       <div className="flex  min-h-screen flex-col md:flex-row h-full">
         {/* Sidebar */}
         <aside
-          className={`bg-gray-900 text-gray-400 w-36 lg:w-52 flex-shrink-0 overflow-x-hidden  ${
+          className={`bg-gray-100 text-gray-400 w-36 lg:w-52 flex-shrink-0 overflow-x-hidden  ${
             isMenuOpen ? "block" : "hidden"
           } md:block`}
         >
-          <div className="flex items-center justify-center h-10 bg-gray-700">
+          <div className="flex items-center justify-center h-10 bg-white">
             <Marquee>
               <span className="text-white text-sm font-semibold">
                 {user?.displayName}
@@ -135,7 +135,6 @@ const Dashboard = () => {
         </div>
         {/* Content */}
         <div className="flex flex-col ml-12 overflow-x-auto flex-1">
-          <h1 className="text-3xl text-center mt-12 mb-12">Welcome!!!</h1>
           <Outlet></Outlet>
         </div>
       </div>

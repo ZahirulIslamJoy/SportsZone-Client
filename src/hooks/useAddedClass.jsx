@@ -10,9 +10,9 @@ const useAddedClass = () => {
     const [isStudent]=useIsStudent();
     const [axiosSecure] = useAxiosWithToken();
   
-    const { data: SelectedClass, refetch } = useQuery({
+    const { data: SelectedClass, refetch:classRefetch } = useQuery({
       queryKey: [`/selectedClass/${email}`],
-      enabled: !loading && isStudent,
+      enabled: !!isStudent && !loading ,
       queryFn: async () => {
         const res = await axiosSecure.get(`/selectedClass/${email}`);
         const data = res.data;
@@ -20,7 +20,7 @@ const useAddedClass = () => {
       },
     });
 
-    return [SelectedClass,refetch];
+    return [SelectedClass,classRefetch];
 }
 
 export default useAddedClass;
