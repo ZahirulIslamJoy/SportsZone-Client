@@ -33,7 +33,7 @@ const PaymentHistory = () => {
   return (
     <div>
       <h1 className="text-3xl mt-12 mb-12 text-center">
-        Your Payment History!!
+        Payment History!!
       </h1>
       <div>
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { initFlowbite } from 'flowbite'
 import PopularClass from './popularClass/PopularClass';
 import BestInstructors from './bestInstructors/BestInstructors';
 import Sliders from './slider/Slider';
+import Activities from './activities/Activities';
 
 const Home = () => {
 
@@ -13,6 +13,7 @@ const Home = () => {
             <Sliders></Sliders>
             <PopularClass></PopularClass>
             <BestInstructors></BestInstructors>
+            <Activities></Activities>
         </div>
     );
 };

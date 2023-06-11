@@ -22,11 +22,9 @@ const Nav = () => {
         <Navbar  className={`w-[85%]  mx-auto  ${theme?" bg":"bg-white"} `} fluid>
           <Navbar.Brand>
             <span className={`self-center ${theme?"text-white":"text-black"}  whitespace-nowrap  lg:text-2xl text-sm font-semibold`}>
-              Play Zone
-              <span>
+              Sports <span>
                 <img className="h-10  w-10 inline-flex" src={logo} alt="" />
-              </span>
-              Pro
+              </span> Zone
             </span>
           </Navbar.Brand>
           <div className="flex gap-4 md:order-2">

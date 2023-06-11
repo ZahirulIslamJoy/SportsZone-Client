@@ -6,7 +6,7 @@ const EnrolledClass = () => {
   console.log(enrolledClass);
   return (
     <div>
-      <h1 className="text-3xl mt-12 mb-12 text-center">Your Enrolled Class</h1>
+      <h1 className="text-3xl mt-12 mb-12 text-center">Enrolled Class!!</h1>
       <div>
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

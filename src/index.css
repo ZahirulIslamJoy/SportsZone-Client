@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 .bg{
     background-color: #1D2A35!important;
 }
@@ -11,4 +9,13 @@
 .text-col{
     color: red !important;
 }
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .fade-in.active {
+    opacity: 1;
+  }
 
