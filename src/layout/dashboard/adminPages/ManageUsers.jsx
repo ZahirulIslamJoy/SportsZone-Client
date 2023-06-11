@@ -70,7 +70,7 @@ const ManageUsers = () => {
   return (
     <div>
       <div>
-        <h1 className="text-center text-3xl mt-12 mb-20">Manage All Users</h1>
+        <h1 className="text-center text-3xl mt-12 mb-20">User Management</h1>
       </div>
       <div>
         <div className="relative mb-20 overflow-x-auto">

@@ -93,7 +93,7 @@ const ManageClasses = () => {
   return (
     <div>
       <h1 className="text-3xl mt-12 mb-12 text-center">
-        Manage Classes Here!!
+        Class Management!!
       </h1>
       <div>
         <div className="relative overflow-x-auto">
@@ -175,7 +175,7 @@ const ManageClasses = () => {
                         classes?.status == "denied"
                       }
                       onClick={() => handleApprove(classes._id)}
-                      className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
+                      className="bg-[#1e2a4b]  rounded-lg text-white  disabled:bg-slate-300 "
                     >
                       Approve
                     </button>
@@ -187,7 +187,7 @@ const ManageClasses = () => {
                         classes?.status == "approved" ||
                         classes?.status == "denied"
                       }
-                      className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
+                      className="bg-[#1e2a4b]  rounded-lg text-white  disabled:bg-slate-300 "
                     >
                       Deny
                     </button>
@@ -195,7 +195,7 @@ const ManageClasses = () => {
                   <td className="px-6  cursor-pointer py-4">
                     <button
                       onClick={()=>showModal(classes._id)}
-                      className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 "
+                      className="bg-[#1e2a4b]  rounded-lg text-white  disabled:bg-slate-300 "
                     >
                       Feedback
                     </button>

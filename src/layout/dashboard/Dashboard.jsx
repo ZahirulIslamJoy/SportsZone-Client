@@ -12,7 +12,7 @@ import { BiSelectMultiple } from "react-icons/bi";
 import { GiConfirmed} from "react-icons/gi";
 import { FaCommentDollar } from "react-icons/fa";
 import { AiFillFileAdd } from "react-icons/ai";
-import { FaAtom } from "react-icons/fa";
+import { GoListOrdered } from "react-icons/go";
 
 
 const Dashboard = () => {
@@ -36,11 +36,6 @@ const Dashboard = () => {
           } md:block`}
         >
           <div className="flex  items-center justify-center h-10">
-            <Marquee>
-              <span className="text-black text-sm font-semibold">
-                {user?.displayName}
-              </span>
-            </Marquee>
           </div>
           <nav className="mt-8 border ml-8  bg-white">
             <a className="flex items-center text-black mt-4 py-2 px-6">
@@ -99,7 +94,7 @@ const Dashboard = () => {
                 <hr className="border" />
                 <Link to='myclass'>
                   <span className="flex text-black  items-center mt-4 py-2 px-2 lg:px-6 ">
-                    <FaAtom></FaAtom>
+                    <GoListOrdered></GoListOrdered>
                     <span className="mx-4">My Class</span>
                   </span>
                 </Link>
@@ -147,6 +142,11 @@ const Dashboard = () => {
         </div>
         {/* Content */}
         <div className="flex flex-col ml-12 overflow-x-auto flex-1">
+        <Marquee>
+              <span className="text-black text-sm font-semibold">
+                {user?.displayName}
+              </span>
+            </Marquee>
           <Outlet></Outlet>
         </div>
       </div>

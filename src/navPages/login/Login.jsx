@@ -59,11 +59,11 @@ const Login = () => {
   };
 
   return (
-    <div  style={{backgroundImage: "url('bg.jpg')", opacity: 0.9}} className="bg-[#282a35] bg-cover  py-16 bg-no-repeat bg-center h-full text-white">
+    <div  style={{backgroundImage: "url('bg2.jpg')", opacity: 0.9}} className="bg-[#282a35] bg-cover  bg-no-repeat bg-center h-full text-white">
       <h1 className="text-center text-3xl font-semibold  pt-20">
         Connect Us With Login!
       </h1>
-      <div className="w-1/2  mt-24 mx-auto">
+      <div className="w-1/2 mt-24 mx-auto">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="">
           <label
@@ -108,7 +108,7 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="text-white mt-5 bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none "
+            className="text-white mt-5 bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 focus:outline-none "
           >
             Login
           </button>
@@ -120,11 +120,11 @@ const Login = () => {
           </Link>
         </p>
         <div className="text-center">
-          <h1>OR!!</h1>
+          <h1 className="mt-12 text-black">OR!!</h1>
           <div className="flex justify-center mt-4">
             <button
               onClick={handleGithubLogin}
-              className="flex items-center  py-1 rounded-lg px-2 gap-2 bg-gray-500"
+              className="flex items-center mb-16  py-1 rounded-lg px-2 gap-2 bg-gray-500"
             >
               <div>Login With</div>
               <div>

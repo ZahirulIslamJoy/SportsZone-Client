@@ -24,7 +24,7 @@ const MyClass = () => {
   return (
     <div>
       <h1 className="text-3xl mt-12 mb-12 text-center">
-        Welcome,Your All Class Added So Far!
+        Added Class!!
       </h1>
       <div>
         <div>
@@ -77,7 +77,7 @@ const MyClass = () => {
                     </td>
                     <td  className="px-6  cursor-pointer py-4">
                       <Link to={`/dashboard/update/${classes?._id}`}>
-                        <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                        <button className="bg-[#1e2a4b]  rounded-lg text-white  disabled:bg-slate-300 ">
                           Update
                         </button>
                       </Link>

@@ -49,52 +49,46 @@ const MyClassInfoUpdate = () => {
       <div>
         <div className="w-1/2  mt-24 mx-auto">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="relative  z-0">
+            <div>
+               <label
+              className="block mb-2 text-sm font-medium text-black"
+            >
+            Class Name
+            </label>
               <input
                 {...register("name")}
                 type="text"
-                id="floating_standard"
-                className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
+                className="bg-gray-50 border border-blue-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="Class Name"
               />
-              <label
-                htmlFor="floating_standard"
-                className="absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Class Name
-              </label>
             </div>
-            <div className="relative mt-5 z-0">
+            <div>
+            <label
+              className="block mb-2 text-sm font-medium text-black"
+            >
+            Total Seats
+            </label>
               <input
                 {...register("seats")}
                 type="nunber"
                 min={1}
-                id="floating_standard1"
-                className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
+                className="bg-gray-50 border border-blue-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="Seats "
               />
-              <label
-                htmlFor="floating_standard1"
-                className="absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Total Seats
-              </label>
             </div>
-            <div className="relative mt-5 z-0">
+            <div>
+            <label
+              className="block mb-2 text-sm font-medium text-black"
+            >
+          Total Price
+            </label>
               <input
                 {...register("price")}
                 type="nunber"
                 min={1}
-                id="floating_standard1"
-                className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
+                className="bg-gray-50 border border-blue-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="Price"
               />
-              <label
-                htmlFor="floating_standard1"
-                className="absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Price
-              </label>
             </div>
             <button
               type="submit"
