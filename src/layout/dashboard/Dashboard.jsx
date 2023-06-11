@@ -6,6 +6,14 @@ import useIsStudent from "../../hooks/useIsStudent";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 import Marquee from "react-fast-marquee";
+import { BiBookContent } from "react-icons/bi";
+import { FaUserAlt } from "react-icons/fa";
+import { BiSelectMultiple } from "react-icons/bi";
+import { GiConfirmed} from "react-icons/gi";
+import { FaCommentDollar } from "react-icons/fa";
+import { AiFillFileAdd } from "react-icons/ai";
+import { FaAtom } from "react-icons/fa";
+
 
 const Dashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,7 +28,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className="flex  flex-col md:flex-row h-full">
+      <div className="flex  min-h-screen flex-col md:flex-row h-full">
         {/* Sidebar */}
         <aside
           className={`bg-gray-900 text-gray-400 w-36 lg:w-52 flex-shrink-0 overflow-x-hidden  ${
@@ -54,17 +62,20 @@ const Dashboard = () => {
             {isStudent && (
               <span>
                 <Link to='selectedclass'>
-                  <span className="flex items-center mt-4 py-2 px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                    <BiSelectMultiple size={30} ></BiSelectMultiple>
                     <span className="mx-4">Selected Classes</span>
                   </span>
                 </Link>
                 <Link to='enrollclass'>
-                  <span className="flex items-center mt-4 py-2 px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                    <GiConfirmed size={30} ></GiConfirmed>
                     <span className="mx-4">Enrolled Classes</span>
                   </span>
                 </Link>
                 <Link to='paymenthistory'>
-                  <span className="flex items-center mt-4 py-2 px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                  <span className=" flex items-center mt-4 py-2 px-2 lg:px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                    <FaCommentDollar size={30} ></FaCommentDollar>
                     <span className="mx-4">Payment History</span>
                   </span>
                 </Link>
@@ -73,12 +84,14 @@ const Dashboard = () => {
             {isInstructor && (
               <span>
                 <Link to='addclass'>
-                  <span className="flex items-center mt-4 py-2 px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                    <AiFillFileAdd size={30} ></AiFillFileAdd>
                     <span className="mx-4">Add Class</span>
                   </span>
                 </Link>
                 <Link to='myclass'>
-                  <span className="flex items-center mt-4 py-2 px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                    <FaAtom></FaAtom>
                     <span className="mx-4">My Class</span>
                   </span>
                 </Link>
@@ -87,12 +100,14 @@ const Dashboard = () => {
              {isAdmin && (
               <span>
                 <Link to='manageclasses'>
-                  <span className="flex items-center mt-4 py-2 px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                    <BiBookContent></BiBookContent>
                     <span className="mx-4">Manage Class</span>
                   </span>
                 </Link>
                 <Link to='manageusers'>
-                  <span className="flex items-center mt-4 py-2 px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                  <span className="flex items-center mt-4 py-2 px-2 lg:px-6 text-gray-400 hover:bg-gray-700 hover:text-white">
+                    <FaUserAlt></FaUserAlt>
                     <span className="mx-4">Manage Users</span>
                   </span>
                 </Link>

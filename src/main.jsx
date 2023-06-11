@@ -11,7 +11,6 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import { initFlowbite } from "flowbite";
 import ThemeProviders from "./providers/ThemeProviders";
 const queryClient = new QueryClient();
 
