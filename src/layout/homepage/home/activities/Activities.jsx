@@ -9,9 +9,9 @@ const Activities = () => {
 
 
   return (
-    <div className={ `${theme?"bg-[#1D2A35] text-white":"bg-white text-black pt-8"}`
+    <div className={ `${theme?"bg-[#1D2A35] text-white":"bg-white text-black "} pt-16`
 }>   
-      <div className="w-[85%] mx-auto ">
+      <div className="w-[85%]  mx-auto ">
       <h1 className="text-3xl mb-24 text-center">Upcoming Activities</h1>
         <Marquee>
           <div className="ml-8">

@@ -94,7 +94,7 @@ const Login = () => {
           </div>
           <div onClick={() => setShowPass(!showPass)} className="mt-2">
             {showPass ? (
-             <BsFillEyeSlashFill  ></BsFillEyeSlashFill>
+             <BsFillEyeSlashFill size={25}  ></BsFillEyeSlashFill>
             ) : (
               <BsFillEyeFill size={25}  ></BsFillEyeFill>
               

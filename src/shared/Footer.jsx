@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <div
-      className={`${theme ? "bg-[#1D2A35] text-white" : "bg-white text-black"} pt-16 `}
+      className={`${theme ? "bg-[#1D2A35] text-white" : "bg-white text-black"} pt-24 `}
     >
       <footer className="w-[85%] mx-auto">
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
@@ -40,11 +40,11 @@ const Footer = () => {
               </div>
               <div>
                 <h2 className="mb-6 text-sm font-semibold   uppercase dark:text-white">
-                  Legal
+                 Contact
                 </h2>
                 <ul className="text-gray-600 dark:text-gray-400 font-medium">
-                  <li className="mb-4">Privacy Policy</li>
-                  <li>Terms &amp; Condition</li>
+                  <li className="mb-4">+8801733850321</li>
+                  <li>zahiruljoy275@gmail.com</li>
                 </ul>
               </div>
             </div>

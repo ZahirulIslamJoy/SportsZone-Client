@@ -9,10 +9,10 @@ const useIsInstructor = () => {
     const [axiosSecure]=useAxiosWithToken();
 
     const { data: isInstructors, refetch:instructorRefetch,isLoading:instructorLoading } = useQuery({
-    queryKey: ["/users/instructor",email],
-    enabled:!loading,
+    queryKey: ["/users/instructor"],
+    enabled:!loading && !!email  ,
     queryFn: async () => {
-      const res = await axiosSecure.get(`${import.meta.env.VITE_URL}/users/instructor/${email}`);
+      const res = await axiosSecure.get(`/users/instructor/${email}`);
       const data = res.data.instructor;
       return data;
     },

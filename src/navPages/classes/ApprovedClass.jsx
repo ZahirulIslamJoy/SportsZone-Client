@@ -9,14 +9,10 @@ import useIsInstructor from "../../hooks/useIsInstructor";
 import useAxiosWithToken from "../../hooks/useAxiosWithToken";
 import { Fade } from "react-awesome-reveal";
 import useAddedClass from "../../hooks/useAddedClass";
-import useIsStudent from "../../hooks/useIsStudent";
 import useEnrolledClass from "../../hooks/useEnrolledClass";
 
 const ApprovedClass = () => {
   const { user } = useContext(AuthContext);
-  const [isAdmin] = useIsAdmin();
-  const [isStudent]=useIsStudent();
-  const [isInstructors] = useIsInstructor();
   const [axiosSecure] = useAxiosWithToken();
 
   const { data: approvedClasses, refetch } = useQuery({
@@ -27,6 +23,11 @@ const ApprovedClass = () => {
       return data;
     },
   });
+
+
+
+  const [isAdmin] = useIsAdmin();
+  const [isInstructors] = useIsInstructor();
   
   const [SelectedClass,classRefetch]=useAddedClass();
   console.log(SelectedClass)
@@ -38,7 +39,7 @@ const ApprovedClass = () => {
       return Swal.fire("Please Login To Select The Course");
     }
 
-    const selectedClass = approvedClasses.find(
+    const selectedClass = approvedClasses?.find(
       (singleClass) => singleClass._id == id
     );
 

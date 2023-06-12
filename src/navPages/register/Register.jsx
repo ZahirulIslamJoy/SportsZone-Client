@@ -30,6 +30,8 @@ const Register = () => {
     const password = data.password;
     const confirmpass = data.confirmpassword;
 
+    
+
     if (password !== confirmpass) {
       Swal.fire({
         position: "top-end",
@@ -170,7 +172,7 @@ const Register = () => {
               <input
                 {...register("password", {
                   required: true,
-                  pattern: /^(?=.*[A-Z])(?=.*[@#$%!*^&+=~])/,
+                  pattern: /^(?=.*[A-Z])(?=.*[@#$%!*^&+=~]).{6,}$/,
                 })}
                 type={showPass ? "text" : "password"}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -190,7 +192,7 @@ const Register = () => {
               )}
               {errors.password?.type === "pattern" && (
                 <p className="text-red-600" role="alert">
-                  Password must Contains One Uppercase and a Special Character{" "}
+                  Password must Contains One Uppercase and a Special Character and six Character Long {" "}
                 </p>
               )}
             </div>

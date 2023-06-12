@@ -12,7 +12,7 @@ const useEnrolledClass = () => {
 
     const { data: enrolledClass } = useQuery({
         queryKey: [`/payment/${email}`],
-        enabled: !loading && !! isStudent,
+        enabled:!!isStudent  &&!!email  && !loading,
         queryFn: async () => {
           const res = await axiosSecure.get(`payment/${email}`);
           const data = res.data;

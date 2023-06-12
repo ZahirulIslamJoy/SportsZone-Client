@@ -26,8 +26,8 @@ const ManageUsers = () => {
     const sendingRole = {
       role,
     };
-    const res = await axios.patch(
-      `${import.meta.env.VITE_URL}/users/${id}`,
+    const res = await axiosSecure.patch(
+      `/users/${id}`,
       sendingRole
     );
     const data = res.data;
@@ -48,8 +48,8 @@ const ManageUsers = () => {
     const sendingRole = {
       role,
     };
-    const res = await axios.patch(
-      `${import.meta.env.VITE_URL}/users/${id}`,
+    const res = await axiosSecure.patch(
+      `/users/${id}`,
       sendingRole
     );
     const data = res.data;
