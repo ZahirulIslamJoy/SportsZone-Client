@@ -18,7 +18,7 @@ Verification:
 Technologies:
 
 * Front End:Tailwind Css,React,Firebase,React Router,Stripe Js,React Hook Form,React Query,Axios.
-*Verification:Jwt Token
+* Verification:Jwt Token
 * BackEnd:ExpressJs,MongoDb
 * Deployed:vercel,Firebase
 
