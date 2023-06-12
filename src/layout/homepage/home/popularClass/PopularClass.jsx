@@ -42,7 +42,7 @@ const PopularClass = () => {
                   Seats Avaliable: {singleClass.seats}
                 </p>
                 <p className="mb-3 font-normal">
-                  Toatal Enrolled: {singleClass.enrolled}
+                  Total Enrolled: {singleClass.enrolled}
                 </p>
               </div>
             </div>

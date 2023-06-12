@@ -71,7 +71,7 @@ const MyClassInfoUpdate = () => {
               <input
                 {...register("seats")}
                 type="number"
-                min={1}
+                min={0}
                 className="bg-gray-50 border border-blue-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Seats "
               />
