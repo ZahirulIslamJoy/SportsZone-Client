@@ -55,7 +55,7 @@ const Footer = () => {
               © 2023 Sports Zone™ . All Rights Reserved.
             </span>
             <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
-              <a className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+              <a href="https://www.facebook.com/zahirulislam.joy.98" className="text-gray-500 hover:text-gray-900 dark:hover:text-white"> 
                 <svg
                   className="w-5 h-5"
                   fill="currentColor"

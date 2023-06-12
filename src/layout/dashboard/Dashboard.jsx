@@ -53,7 +53,7 @@ const Dashboard = () => {
                 ></path>
               </svg>
               <Link to="/dashboard">
-              <span className="mx-4">Dashboard</span>
+              <span className=" lg:mx-4">Dashboard</span>
               </Link>
             </a>
             {isStudent && (
@@ -129,7 +129,7 @@ const Dashboard = () => {
               className="bg-gray-800 text-gray-400  text-left"
               onClick={toggleMenu}
             >
-              Dahboard
+              Dashboard
             </button>
           ) : (
             <button

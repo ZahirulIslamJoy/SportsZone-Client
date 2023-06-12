@@ -80,7 +80,7 @@ const SelectedClass = () => {
                 </td>
                 <td className="px-6  cursor-pointer py-4">
                   <Link to={`/dashboard/payment/${classes?._id}`} >
-                    <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                    <button className="bg-[#1e2a4b]  rounded-lg text-white  disabled:bg-slate-300 ">
                       Pay
                     </button>
                   </Link>
@@ -89,7 +89,7 @@ const SelectedClass = () => {
                   onClick={() => handleClassDelete(classes?._id)}
                   className="px-6   cursor-pointer py-4"
                 >
-                  <button className="bg-[#1e2a4b] px-2 py-1 rounded-lg text-white  disabled:bg-slate-300 ">
+                  <button className="bg-[#1e2a4b]  rounded-lg text-white  disabled:bg-slate-300 ">
                     Delete
                   </button>
                 </td>

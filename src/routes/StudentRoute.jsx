@@ -19,7 +19,7 @@ const StudentRoute = ({children}) => {
   if (user && isStudent) {
     return children;
   } else {
-    return <Navigate to="/" replace state={location.pathname}></Navigate>;
+    return <Navigate to="/login" replace state={location.pathname}></Navigate>;
   }
 };
 
