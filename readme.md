@@ -13,7 +13,7 @@ Features:
 
 Verification:
 
-*All Api data is verified with Jwt Token,Only Users Can See his/her specific route page(For Admin,User,Instructor All Pages are secured Properly,One Cant access Onthers Route Page)
+* All Api data is verified with Jwt Token,Only Users Can See his/her specific route page(For Admin,User,Instructor All Pages are secured Properly,One Cant access Onthers Route Page)
 
 Technologies:
 
